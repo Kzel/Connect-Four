@@ -9,6 +9,6 @@ Parametres::Parametres(){
 
 int Parametres::consulteParam(){
 
-
+	return 0;
 }
 

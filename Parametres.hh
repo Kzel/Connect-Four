@@ -9,6 +9,9 @@ public:
 	int consulteParam();
 	//getters
 	int getAvecResume(){return avecResume;};
+	int getNivDifficulte(){return nivDifficulte;};
+	int getAffichageSymboles(){return affichageSymboles;};
+	int getAffichageIndex(){return affichageIndex;};
 	//setters
 	void setAffichageSymboles(int affichageSymb)
 	{affichageSymboles=affichageSymb;};

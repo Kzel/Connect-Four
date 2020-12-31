@@ -6,6 +6,8 @@
 #include <time.h>
 #include "Parametres.hh"
 
+using namespace std;
+
 //classe abstraite Partie
 class Partie{
 public:
@@ -16,7 +18,12 @@ public:
 	int nbPionPresentCol(int c);
 	int VerifieFin();
 	void majAffichage();
-	void reinitialisePartie(int choixNom);
+	void majAffichageMorpion();
+	void majAffichageChiffres();
+	void majAffichageChiffresIndex();
+	void majAffichageMorpionIndex();
+	virtual void remplitGrille()=0;
+	virtual void reinitialisePartie(int choixNom)=0;
 	virtual void debutPartie()=0;
 	virtual int finPartie(int issue)=0;
 

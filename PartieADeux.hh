@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Parametres.hh"
 #include "Partie.hh"
 
@@ -5,11 +7,14 @@ class PartieADeux: public Partie{
 public:
 	PartieADeux(Parametres param);
 	int jeu();
+	void reinitialisePartie();
+	void remplitGrille();
 	void debutPartie();
 	int finPartie(int issue);
 
+
 protected:
 
-	string tab2Joueurs[2];
+	string tabJoueurs[2];
 
 };

@@ -1,9 +1,13 @@
+//Fait par Mohamed-Ali YAZID et Yining BAO le 30/12/2020
 #pragma once
+
 
 #include <iostream>
 #include <string>
 #include "Parametres.hh"
 #include "Partie.hh"
+#include "PartieADeux.hh"
+#include "PartieAvecResume.hh"
 
 class Jeu{
 public:
@@ -16,6 +20,6 @@ public:
 
 private:
 	Parametres param;
-	Partie & partie;
+	Partie* partie;
 
 };

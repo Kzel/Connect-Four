@@ -4,12 +4,14 @@ using namespace std;
 
 Jeu::Jeu() {
 	param=Parametres();
+	partie=new PartieADeux(param);
 
 }
 
 void Jeu::menu(){
+	//mettre ca dans le main avant la creation du Jeu
 	int entree;
-	cout<<"----------------------------------------------"
+	cout<<"----------------------------------------------"<<endl;
 	cout<<"Bonjour, ceci est un jeu de puissance 4."<<endl;
 	cout<<"Tape l'un des chiffres indiques pour aller vers ce qui t'interesse!"<<endl;
 	cout<<"1: Jouer	contre IA		2: Jouer a 2		3: Parametres"<<endl;
@@ -24,35 +26,35 @@ void Jeu::decisionMenu(int entree){
 	switch(entree){
 
 		case 1:
-			if (param.nivDifficulte==0){
-				partie=PartieIAfacile(param);
+			if (param.getNivDifficulte()==0){
+				//partie=new PartieIAfacile(param);
 
 			}
-			else if(param.nivDifficulte==1){
-				partie=PartieIAmoyen(param);
+			else if(param.getNivDifficulte()==1){
+				//partie=new PartieIAmoyen(param);
 
 			}
 			else{
-				partie=PartieIAdifficile(param);
+				//partie=new PartieIAdifficile(param);
 
 			}
-			lancePartie();
+			lancerPartie();
 			break;
 
 
 		case 2:
 			//avecResume=0, on crée une partie sans recap a la fin
 			if (!param.getAvecResume()){
-				partie=PartieADeux(param);
+				partie=new PartieADeux(param);
 
 			}
 			//sinon on crée une partie avec recap
 			else{
-				partie=PartieAvecResume(param);
+				partie=new PartieAvecResume(param);
 
 			}
-			lancePartie();
-			break
+			lancerPartie();
+			break;
 
 		case 3:
 			lancerParam();
@@ -61,10 +63,10 @@ void Jeu::decisionMenu(int entree){
 
 }
 
-//a lancer apres decisionMenu()!!
-void Jeu::lancePartie(){
+
+void Jeu::lancerPartie(){
 	//si le joueur veut rejouer alors partie.jeu()=0
-	while(partie.jeu()!=3)
+	while(partie->jeu()!=3)
 	menu();
 }
 
