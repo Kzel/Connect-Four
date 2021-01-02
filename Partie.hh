@@ -5,6 +5,7 @@
 #include <map>
 #include <time.h>
 #include "Parametres.hh"
+#include "PionsAlignes.hh"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ public:
 
 protected:
 	int ligneRemplieMax;
-	int grille[7][6];
+	int grille[6][7];
 	int JoueurCourant;
 	int compteurTour;
 	int demandeNom;

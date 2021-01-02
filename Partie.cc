@@ -1,10 +1,11 @@
 #include "Partie.hh"
 
+
 using namespace std;
 
 Partie::Partie(Parametres p){
 	par=p;
-	ligneRemplieMax=0;
+	ligneRemplieMax=-1;
 	compteurTour=0;
 	map<int,int>::iterator it;
 	//on remet le nb de jetons par colonne à 0 partout
@@ -122,4 +123,37 @@ void Partie::majAffichage(){
 	else{
 		majAffichageChiffresIndex();
 	}
+}
+
+int Partie::VerifieFin(){
+	compteurTour++;//a ne pas mettre ici
+	int i,j;
+
+	//on verifie les lignes
+
+	for(i=0;i<=ligneRemplieMax;i++){
+		PionsAlignes pions;
+		for(j=0;j<=6;j++){
+			pions.ajouterPion(grille[i][j]);
+		}
+		if(pions.estGagnant()!=-1)
+			return pions.estGagnant();
+	}
+	//on verifie les colonnes
+
+	//on verifie les diagonales
+
+	if (compteurTour==42){
+		return 2;
+	}
+
+	//on change le joueur courant
+	if (JoueurCourant==1) //a ne pas mettre ici
+		JoueurCourant--;
+	else
+		JoueurCourant++;
+
+	return -1;
+	//return 0;
+
 }

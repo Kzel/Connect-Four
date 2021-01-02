@@ -22,19 +22,20 @@ PartieADeux::PartieADeux(Parametres param):Partie(param){
  }
 
 //selon l'issue, on envoie le resultat au joueur
- //
+ //on rdemande au joueur si il veut recommencer ou retourner au menu
+ //et on retourne sa réponse
  int PartieADeux::finPartie(int issue){
  	int choixFin;
  	cout<<"----------------------------------"<<endl;
  	switch (issue){
- 		case 1:
+ 		case 0:
  			cout<<"Felicitations ! Tu as gagne "<<tabJoueurs[0]<<endl;
  			break;
- 		case 2:
+ 		case 1:
  			cout<<"Felicitations ! Tu as gagne "<<tabJoueurs[1]<<endl;
 
  			break;
- 		case 3:
+ 		case 2:
  			cout<<"Match nul. Un coude à coude VREUMENT"<<endl; 
  			break;
  	}
@@ -57,7 +58,7 @@ PartieADeux::PartieADeux(Parametres param):Partie(param){
 
   void PartieADeux::reinitialisePartie() {
  	//on remet tous les attributs a leur état de base
-	ligneRemplieMax=0;
+	ligneRemplieMax=-1;
 	compteurTour=0;
 	srand(time(NULL));
 	JoueurCourant=rand()%2;
@@ -86,22 +87,43 @@ PartieADeux::PartieADeux(Parametres param):Partie(param){
 
 void PartieADeux::remplitGrille(){
 	int colonne;
-	cout<<"A ton tour"<<tabJoueurs[JoueurCourant] <<". Remplis la colonne de ton choix"<<endl;
-	cin>>colonne;
-	if (nbParColonne[colonne]<6){
-		grille[nbParColonne[colonne]][colonne]=JoueurCourant;
+	cout<<"A ton tour"<<tabJoueurs[JoueurCourant]<<". Tes jetons sont les:";
+	if (!(par.getAffichageSymboles())){
+		if (!JoueurCourant){
+			cout<<"X"<<endl;
+		}
+		else{
+			cout<<"O"<<endl;
+		}
 	}
 	else{
+		if (!JoueurCourant){
+			cout<<"1"<<endl;
+		}
+		else{
+			cout<<"2"<<endl;
+		}
+
+	}
+	cout<<". Remplis la colonne de ton choix"<<endl;
+	cin>>colonne;
+	
+	//tant que la colonne choisie est remplie, on redemande au joueur de jouer
+	do{
+			
 		majAffichage();
 		cout<<"choisis une colonne non remplie"<<endl;
-	}
+	} 
+	while(nbParColonne[colonne]==6);
 
+	grille[nbParColonne[colonne]][colonne]=JoueurCourant;
+	nbParColonne[colonne]++; //maj ligneRemplieMax
 }
 
 
  int PartieADeux::jeu(){
 
- 	// while(!VerifieFin()){
+ 	// while(VerifieFin()==-1){
 
  	// }
  	// return finPartie(VerifieFin());
