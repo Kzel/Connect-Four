@@ -125,13 +125,32 @@ void Partie::majAffichage(){
 	}
 }
 
+void Partie::majAttributs(){
+	//on change le joueur courant
+	if (JoueurCourant==1) //a ne pas mettre ici
+		JoueurCourant--;
+	else
+		JoueurCourant++;
+	compteurTour++;
+	map<int,int>::iterator  it ;
+
+	//on remet a jour ligneRemplieMax en parcourant la map contenant
+	//le nombre de pions par colonne
+	for(map<int,int>::iterator it=nbParColonne.begin();it!=nbParColonne.end();it++){
+		if(it->second>ligneRemplieMax){
+			ligneRemplieMax=it->second;
+		}
+	}
+
+}
+
 int Partie::VerifieFin(){
-	compteurTour++;//a ne pas mettre ici
+
 	int i,j;
 
 	//on verifie les lignes
 
-	for(i=0;i<=ligneRemplieMax;i++){
+	for(i=0;i<ligneRemplieMax;i++){
 		PionsAlignes pions;
 		for(j=0;j<=6;j++){
 			pions.ajouterPion(grille[i][j]);
@@ -140,20 +159,24 @@ int Partie::VerifieFin(){
 			return pions.estGagnant();
 	}
 	//on verifie les colonnes
+	for(j=0;j<=6;j++){
+		if(!(nbParColonne[j]<4)){
+			PionsAlignes pions;
+			for(i=0;i<nbParColonne[j];i++){
+				pions.ajouterPion(grille[i][j]);
+			}
+			if(pions.estGagnant()!=-1)
+				return pions.estGagnant();
+		}
+	}
 
 	//on verifie les diagonales
 
+	//on verifie si les joueurs n'ont pas déposé tous leurs pions
 	if (compteurTour==42){
 		return 2;
 	}
 
-	//on change le joueur courant
-	if (JoueurCourant==1) //a ne pas mettre ici
-		JoueurCourant--;
-	else
-		JoueurCourant++;
-
 	return -1;
-	//return 0;
 
 }

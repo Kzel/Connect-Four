@@ -23,8 +23,9 @@ public:
 	void majAffichageChiffres();
 	void majAffichageChiffresIndex();
 	void majAffichageMorpionIndex();
+	void majAttributs();
 	virtual void remplitGrille()=0;
-	virtual void reinitialisePartie(int choixNom)=0;
+	virtual void reinitialisePartie()=0;
 	virtual void debutPartie()=0;
 	virtual int finPartie(int issue)=0;
 

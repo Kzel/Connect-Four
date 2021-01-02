@@ -3,6 +3,7 @@
 
 PartieADeux::PartieADeux(Parametres param):Partie(param){
 
+
 }
 
 
@@ -87,7 +88,7 @@ PartieADeux::PartieADeux(Parametres param):Partie(param){
 
 void PartieADeux::remplitGrille(){
 	int colonne;
-	cout<<"A ton tour"<<tabJoueurs[JoueurCourant]<<". Tes jetons sont les:";
+	cout<<"A ton tour "<<tabJoueurs[JoueurCourant]<<". Tes jetons sont les:";
 	if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
 			cout<<"X"<<endl;
@@ -105,29 +106,35 @@ void PartieADeux::remplitGrille(){
 		}
 
 	}
-	cout<<". Remplis la colonne de ton choix"<<endl;
+	cout<<"Remplis la colonne de ton choix"<<endl;
 	cin>>colonne;
+	cout<<endl;
 	
 	//tant que la colonne choisie est remplie, on redemande au joueur de jouer
-	do{
+	while(nbParColonne[colonne]==6){
 			
 		majAffichage();
 		cout<<"choisis une colonne non remplie"<<endl;
+		cin>>colonne;
 	} 
-	while(nbParColonne[colonne]==6);
+	
 
 	grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++; //maj ligneRemplieMax
+
 }
 
 
  int PartieADeux::jeu(){
 
- 	// while(VerifieFin()==-1){
+ 	while(VerifieFin()==-1){
+ 		remplitGrille();
+ 		majAttributs();
+ 		majAffichage();
 
- 	// }
- 	// return finPartie(VerifieFin());
+ 	}
+ 	return finPartie(VerifieFin());
 
- 	return 0;
+ 	//return 0;
  	
  }

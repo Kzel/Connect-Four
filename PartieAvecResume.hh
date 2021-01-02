@@ -11,10 +11,11 @@ private:
 	int nb3Pions[2];
 	float tpsJoueur[2];
 public:
-	PartieAvecResume(Parametres param);
+	//PartieAvecResume(Parametres param);
 	int Verifie3Pions();
 	int jeu();
-	void reinitialisePartie(int choixNom);
+	void remplitGrille();
+	void reinitialisePartie();
 	void debutPartie();
 	int finPartie(int issue);
 

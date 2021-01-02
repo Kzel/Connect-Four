@@ -3,6 +3,7 @@
 #include "Parametres.hh"
 #include "Partie.hh"
 
+
 class PartieADeux: public Partie{
 public:
 	PartieADeux(Parametres param);

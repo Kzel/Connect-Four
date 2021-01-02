@@ -50,7 +50,7 @@ void Jeu::decisionMenu(int entree){
 			}
 			//sinon on crée une partie avec recap
 			else{
-				partie=new PartieAvecResume(param);
+				//partie=new PartieAvecResume(param);
 
 			}
 			lancerPartie();
@@ -66,7 +66,9 @@ void Jeu::decisionMenu(int entree){
 
 void Jeu::lancerPartie(){
 	//si le joueur veut rejouer alors partie.jeu()=0
+	partie->debutPartie();
 	while(partie->jeu()!=3)
+		partie->reinitialisePartie();
 	menu();
 }
 
