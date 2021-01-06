@@ -14,10 +14,10 @@ class Partie{
 public:
 	Partie(Parametres p);
 	virtual int jeu() = 0;
-	int nbPionPresentDiago(int l,int c,int l2, int c2);
-	int nbPionPresentLig(int l);
-	int nbPionPresentCol(int c);
 	int VerifieFin();
+	int VerifieDiago(int l1,int c1,int l2,int c2);
+	int VerifieDiagoHB();
+	int VerifieDiagoBH();
 	void majAffichage();
 	void majAffichageMorpion();
 	void majAffichageChiffres();
@@ -28,6 +28,7 @@ public:
 	virtual void reinitialisePartie()=0;
 	virtual void debutPartie()=0;
 	virtual int finPartie(int issue)=0;
+	int& operator()(int L, int C){return grille[L][C];};
 
 protected:
 	int ligneRemplieMax;

@@ -15,6 +15,7 @@ PartieADeux::PartieADeux(Parametres param):Partie(param){
 		cin>>tabJoueurs[1];  
  	}
  	if(JoueurCourant==0){
+ 		cout<<endl;
  		cout<<"C'est " << tabJoueurs[0] << " qui commence"<<endl;
  	}
  	else{
@@ -135,6 +136,6 @@ void PartieADeux::remplitGrille(){
  	}
  	return finPartie(VerifieFin());
 
- 	//return 0;
+
  	
  }
