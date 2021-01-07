@@ -13,8 +13,9 @@ using namespace std;
 class Partie{
 public:
 	Partie(Parametres p);
+	int getLigneRemplieMax(){return ligneRemplieMax;};
 	virtual int jeu() = 0;
-	int VerifieFin();
+	virtual int VerifieFin() = 0;
 	int VerifieDiago(int l1,int c1,int l2,int c2);
 	int VerifieDiagoHB();
 	int VerifieDiagoBH();

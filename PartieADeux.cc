@@ -126,6 +126,50 @@ void PartieADeux::remplitGrille(){
 }
 
 
+int PartieADeux::VerifieFin(){
+
+	int i,j;
+
+	//on verifie les lignes
+
+	for(i=0;i<ligneRemplieMax;i++){
+		PionsAlignes pions;
+		for(j=0;j<=6;j++){
+			pions.ajouterPion(grille[i][j]);
+		}
+		if(pions.estGagnant()!=-1)
+			return pions.estGagnant();
+	}
+	//on verifie les colonnes
+	for(j=0;j<=6;j++){
+		if(!(nbParColonne[j]<4)){
+			PionsAlignes pions;
+			for(i=0;i<nbParColonne[j];i++){
+				pions.ajouterPion(grille[i][j]);
+			}
+			if(pions.estGagnant()!=-1)
+				return pions.estGagnant();
+		}
+	}
+
+	//on verifie les diagonales
+	if (!(ligneRemplieMax<4)){
+		if (VerifieDiagoBH()!=-1)
+			return VerifieDiagoBH();
+		if (VerifieDiagoHB()!=-1)
+			return VerifieDiagoHB();
+	}
+
+	//on verifie si les joueurs n'ont pas déposé tous leurs pions
+	if (compteurTour==42){
+		return 2;
+	}
+
+	return -1;
+
+}
+
+
  int PartieADeux::jeu(){
 
  	while(VerifieFin()==-1){

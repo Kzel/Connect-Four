@@ -67,8 +67,8 @@ void Jeu::decisionMenu(int entree){
 void Jeu::lancerPartie(){
 	//si le joueur veut rejouer alors partie.jeu()=0
 	partie->debutPartie();
-	while(partie->jeu()!=3)
-		partie->reinitialisePartie();
+	while(partie->jeu()!=3);
+
 	menu();
 }
 

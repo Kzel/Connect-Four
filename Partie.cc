@@ -34,6 +34,7 @@ Partie::Partie(Parametres p){
 void Partie::majAffichageMorpionIndex(){
 
 	int i,j;
+	cout<<"		# 0  1  2  3  4  5  6  #"<<endl;
 	for(i=5;i>=0;i--){
 		cout<<i<<"		| ";
 		for (j=0;j<7;j++){
@@ -48,13 +49,14 @@ void Partie::majAffichageMorpionIndex(){
 		
 		cout<<"|"<<endl<<"		|----------------------|"<<std::endl;
 	}
-	cout<<"		# 0  1  2  3  4  5  6  #"<<endl;
+
 }
 
 void Partie::majAffichageMorpion(){
 	int i,j;
+	cout<<endl;
 	for(i=5;i>=0;i--){
-		cout<<endl;
+		
 		cout<<"		| ";
 		for (j=0;j<7;j++){
 			if (grille[i][j]==-1) 
@@ -72,11 +74,12 @@ void Partie::majAffichageMorpion(){
 
 void Partie::majAffichageChiffresIndex(){
 	int i,j;
+	cout<<"		# 0  1  2  3  4  5  6  #"<<endl;
 	for(i=5;i>=0;i--){
 		cout<<i<<"		| ";
 		for (j=0;j<7;j++){
 			if (grille[i][j]==-1) 
-				cout<<"0";
+				cout<<" ";
 			if (grille[i][j]==0) 
 				cout<<"1";
 			if (grille[i][j]==1) 
@@ -86,17 +89,18 @@ void Partie::majAffichageChiffresIndex(){
 		
 		cout<<"|"<<endl<<"		|----------------------|"<<std::endl;
 	}
-	cout<<"		# 0  1  2  3  4  5  6  #"<<endl;
+
 }
 
 void Partie::majAffichageChiffres(){
 	int i,j;
+	cout<<endl;
 	for(i=5;i>=0;i--){
-		cout<<endl;
+		
 		cout<<"		| ";
 		for (j=0;j<7;j++){
 			if (grille[i][j]==-1) 
-				cout<<"0";
+				cout<<" ";
 			if (grille[i][j]==0) 
 				cout<<"1";
 			if (grille[i][j]==1) 
@@ -194,65 +198,22 @@ int Partie::VerifieDiagoBH(){
 //verifie les diagonales possibles ayant une orientation bas gauche vers haut droite
 int Partie::VerifieDiagoHB(){
 	//on verifie chaque diagonale susceptible d'avoir 4 pions alignes
-	if (VerifieDiago(0,3,3,0)!=-1)
-		return VerifieDiago(0,3,3,0);
+	if (VerifieDiago(3,0,0,3)!=-1)
+		return VerifieDiago(3,0,0,3);
 
-	if (VerifieDiago(0,4,4,0)!=-1)
-		return VerifieDiago(0,4,4,0);
+	if (VerifieDiago(4,0,0,4)!=-1)
+		return VerifieDiago(4,0,0,4);
 
-	if (VerifieDiago(0,5,5,0)!=-1)
-		return VerifieDiago(0,5,5,0);
+	if (VerifieDiago(5,0,0,5)!=-1)
+		return VerifieDiago(5,0,0,5);
 
-	if (VerifieDiago(0,6,5,1)!=-1)
-		return VerifieDiago(0,6,5,1);
+	if (VerifieDiago(5,1,0,6)!=-1)
+		return VerifieDiago(5,1,0,6);
 
-	if (VerifieDiago(1,6,5,2)!=-1)
-		return VerifieDiago(1,6,5,2);
+	if (VerifieDiago(5,2,1,6)!=-1)
+		return VerifieDiago(5,2,1,6);
 
-	if (VerifieDiago(2,6,5,3)!=-1)
-		return VerifieDiago(2,6,5,3);
+	if (VerifieDiago(5,3,2,6)!=-1)
+		return VerifieDiago(5,3,2,6);
 	return -1;
-}
-
-int Partie::VerifieFin(){
-
-	int i,j;
-
-	//on verifie les lignes
-
-	for(i=0;i<ligneRemplieMax;i++){
-		PionsAlignes pions;
-		for(j=0;j<=6;j++){
-			pions.ajouterPion(grille[i][j]);
-		}
-		if(pions.estGagnant()!=-1)
-			return pions.estGagnant();
-	}
-	//on verifie les colonnes
-	for(j=0;j<=6;j++){
-		if(!(nbParColonne[j]<4)){
-			PionsAlignes pions;
-			for(i=0;i<nbParColonne[j];i++){
-				pions.ajouterPion(grille[i][j]);
-			}
-			if(pions.estGagnant()!=-1)
-				return pions.estGagnant();
-		}
-	}
-
-	//on verifie les diagonales
-	if (!(ligneRemplieMax<4)){
-		if (VerifieDiagoBH()!=1)
-			return VerifieDiagoBH();
-		if (VerifieDiagoHB()!=1)
-			return VerifieDiagoHB();
-	}
-
-	//on verifie si les joueurs n'ont pas déposé tous leurs pions
-	if (compteurTour==42){
-		return 2;
-	}
-
-	return -1;
-
 }

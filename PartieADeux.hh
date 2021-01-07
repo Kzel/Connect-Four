@@ -11,6 +11,7 @@ public:
 	void reinitialisePartie();
 	void remplitGrille();
 	void debutPartie();
+	int VerifieFin();
 	int finPartie(int issue);
 
 

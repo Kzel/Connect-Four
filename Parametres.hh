@@ -12,6 +12,8 @@ public:
 	int getNivDifficulte(){return nivDifficulte;};
 	int getAffichageSymboles(){return affichageSymboles;};
 	int getAffichageIndex(){return affichageIndex;};
+	int getSansEgalite(){return sansEgalite;};
+	int getCritereEgalite(){return critereEgalite;};
 	//setters
 	void setAffichageSymboles(int affichageSymb)
 	{affichageSymboles=affichageSymb;};
