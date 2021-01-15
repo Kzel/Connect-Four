@@ -54,9 +54,9 @@ void PartieAvecResume::remplitGrille(){
 void PartieAvecResume::reinitialisePartie(){
 
 }
-void PartieAvecResume::debutPartie(){
-
-}
+// void PartieAvecResume::debutPartie(){
+// 	cout<<"rien"<<endl;
+// }
 
 int PartieAvecResume::departagePions(){
 	//cas où le critere est le nombre d'alignements de 3 pions
@@ -71,6 +71,34 @@ int PartieAvecResume::departagePions(){
 			return departageTemps();
 		}
 
+}
+int PartieAvecResume::Comptage3Pions(){
+	//c'est dans cette fonction qu'on change nb3Pions
+	//int somme;
+	return 0;
+
+}
+
+int PartieAvecResume::ComptageUnitaire(int l1,int c1,int l2,int c2,int joueur){
+	PionsAlignes pions;
+	//on compte pour une ligne
+	if(l1==l2){
+		for (int i=c1;i<=c2;i++){
+			pions.ajouterPion(grille[l1][i]);
+		}
+		return pions.compte3Pions(joueur);
+	}
+	//on compte pour une colonne
+	else if(c1==c2){
+		for (int i=l1;i<=l2;i++){
+			pions.ajouterPion(grille[i][c1]);
+		}
+		return pions.compte3Pions(joueur);
+	}
+	//on compte pour une diagonale
+	else{
+		return 0;
+	}
 }
 
 int PartieAvecResume::VerifieFin(){

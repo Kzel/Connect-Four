@@ -9,6 +9,7 @@ class PionsAlignes{
 public:
 	PionsAlignes();
 	int estGagnant();
+	int compte3Pions(int i);
 	void ajouterPion(int pion);
 
 private:

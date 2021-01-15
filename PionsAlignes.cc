@@ -31,6 +31,29 @@ int PionsAlignes::estGagnant(){
 
 }
 
+//compte combien on trouve de succession 
+// de 3 pions identiques dans le vector de pions
+// pour un type de pion donné par i
+int PionsAlignes::compte3Pions(int i){
+	int compteur=0;
+	int cpt2=0;
+	vector<int>::iterator iter;
+	for (iter=pions.begin();iter!=pions.end();iter++){
+		if (*iter!=i){
+			cpt2=0;
+		}
+		else{
+			cpt2++;
+		}
+		//on a atteint 3 pions identiques successifs
+		if (cpt2==3){
+			compteur++;
+			cpt2=0;
+		}
+	}
+	return compteur;
+}
+
 void PionsAlignes::ajouterPion(int pion){
 	pions.push_back(pion);
 
