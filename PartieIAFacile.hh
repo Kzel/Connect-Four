@@ -10,7 +10,6 @@
 class PartieIAFacile: public Partie{
 public:
 	PartieIAFacile(Parametres param);
-    public:
     void debutPartie();
     int finPartie(int issue);
     void reinitialisePartie();
@@ -21,6 +20,4 @@ public:
 
 protected:
     string joueurnom;
-
-
-}
+};
