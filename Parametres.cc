@@ -6,7 +6,7 @@ Parametres::Parametres(){
 	affichageSymboles=1;
 	affichageIndex=1;
 	critereEgalite=1;
-	nivDifficulte=0;
+	nivDifficulte=1;
 	sansEgalite=1;
 	avecResume=1;
 
@@ -116,7 +116,7 @@ void Parametres::afficherTous(){
 }
 
 void Parametres::Changer(int num){
-	int x1,x2,x3,x4,x5,x6,x7;
+	int x1,x2,x3,x4,x5,x6;
 	cout<<"Comment vous voulez changer ce parametre?";
 	cout<<"Tapez ce que vous voulez";
 	switch (num)
