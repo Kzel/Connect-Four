@@ -11,6 +11,9 @@ PartieAvecResume::PartieAvecResume(Parametres param):PartieADeux(param){
 int PartieAvecResume::finPartie(int issue){
 	 int choixFin;
  	cout<<"----------------------------------"<<endl;
+ 	// on affiche le resume si il y a lieu
+ 	if(par.getAvecResume())
+ 		afficheResume();
  	switch (issue){
  		case 0:
  			cout<<"Felicitations ! Tu as gagne "<<tabJoueurs[0]<<endl;
@@ -23,7 +26,8 @@ int PartieAvecResume::finPartie(int issue){
  			cout<<"Match nul. Un coude à coude VREUMENT"<<endl; 
  			break;
  	}
- 	 cout<<"Tu veux faire quoi maintenant?"<<endl;
+ 	
+ 	cout<<"Tu veux faire quoi maintenant?"<<endl;
  	cout<<"1:Recommencer		2:Recommencer en changeant les noms			3:Menu"<<endl;
  	cin>>choixFin;
 
@@ -48,6 +52,28 @@ int PartieAvecResume::departageTemps(){
 			return 1;
 		}
 }
+
+void PartieAvecResume::afficheResume(){
+	cout<<"----------------------------------"<<endl;
+	cout<<"RESUME DE LA PARTIE:"<<endl;
+	cout<<endl;
+	cout<<"Nombre de tours de la partie: "<<compteurTour<<endl;
+	cout<<"Joueur 1: "<<tabJoueurs[0]<<endl;
+	if (par.getAffichageSymboles())
+		cout<<"Symbole pions: 1"<<endl;
+	else
+		cout<<"Symbole pions: X"<<endl;
+	cout<<"Nombre de 3 pions alignes: "<<nb3Pions[0]<<endl;
+	cout<<endl;
+	cout<<"Joueur 2: "<<tabJoueurs[1]<<endl;
+	if (par.getAffichageSymboles())
+		cout<<"Symbole pions: 2"<<endl;
+	else
+		cout<<"Symbole pions: O"<<endl;
+	cout<<"Nombre de 3 pions alignes: "<<nb3Pions[1]<<endl;
+	cout<<"----------------------------------"<<endl;
+}
+
 void PartieAvecResume::remplitGrille(){
 	
 }
@@ -60,71 +86,94 @@ void PartieAvecResume::reinitialisePartie(){
 
 int PartieAvecResume::departagePions(){
 	//cas où le critere est le nombre d'alignements de 3 pions
-
-		if(nb3Pions[0]>nb3Pions[1]){
-			return 0;
-		}
-		else if(nb3Pions[1]>nb3Pions[0]){
-			return 1;
-		}
-		else{
-			return departageTemps();
-		}
+	Comptage3Pions(0);
+	Comptage3Pions(1);
+	if(nb3Pions[0]>nb3Pions[1]){
+		return 0;
+	}
+	else if(nb3Pions[1]>nb3Pions[0]){
+		return 1;
+	}
+	else{
+		return departageTemps();
+	}
 
 }
-int PartieAvecResume::Comptage3Pions(){
+void PartieAvecResume::Comptage3Pions(int joueur){
 	//c'est dans cette fonction qu'on change nb3Pions
-	//int somme;
-	return 0;
+	int somme;
+	int i;
+	//nombre de 3 pions dans les lignes
+	//on rajoute ce nombre a somme
+	for(i=0;i<=5;i++)
+		somme+=ComptageUnitaire(i,0,i,6,joueur);
+	//nombre de 3 pions dans les colonnes
+	for(i=0;i<=6;i++)
+		somme+=ComptageUnitaire(0,i,5,i,joueur);
+	
+	//nombre de 3 pions dans les diagonales
+	//diagonales coin bas gauche vers coin haut droit
+	for(i=0;i<=3;i++)
+		somme+=ComptageUnitaire(3-i,0,5,2+i,joueur);
+	
+	for(i=0;i<=3;i++)
+		somme+=ComptageUnitaire(0,1+i,5-i,6,joueur);
 
+	//diagonales coin haut gauche vers coin bas droit
+	for(i=0;i<=3;i++)
+		somme+=ComptageUnitaire(2+i,0,0,2+i,joueur);
+	for(i=0;i<=3;i++)
+		somme+=ComptageUnitaire(5,1+i,0+i,6,joueur);
+
+	nb3Pions[joueur]=somme;
 }
 
 int PartieAvecResume::ComptageUnitaire(int l1,int c1,int l2,int c2,int joueur){
 	PionsAlignes pions;
+	int i;
 	//on compte pour une ligne
 	if(l1==l2){
-		for (int i=c1;i<=c2;i++){
+		for (i=c1;i<=c2;i++){
 			pions.ajouterPion(grille[l1][i]);
 		}
-		return pions.compte3Pions(joueur);
 	}
 	//on compte pour une colonne
 	else if(c1==c2){
-		for (int i=l1;i<=l2;i++){
+		for (i=l1;i<=l2;i++){
 			pions.ajouterPion(grille[i][c1]);
 		}
-		return pions.compte3Pions(joueur);
+		
 	}
 	//on compte pour une diagonale
 	else{
-		return 0;
+		if(l2>l1){
+			for(i=0;i<=l2-l1;i++){
+				pions.ajouterPion(grille[l1+i][c1+i]);
+			}
+		}
+		else{
+			for(i=0;i<=l1-l2;i++){
+				pions.ajouterPion(grille[l1-i][c1+i]);
+			}		
+		}
+
 	}
+	return pions.compte3Pions(joueur);
 }
 
 int PartieAvecResume::VerifieFin(){
-	int i,j;
 
+
+	int retour=-1;
 	//on verifie les lignes
-
-	for(i=0;i<ligneRemplieMax;i++){
-		PionsAlignes pions;
-		for(j=0;j<=6;j++){
-			pions.ajouterPion(grille[i][j]);
-		}
-		if(pions.estGagnant()!=-1)
-			return pions.estGagnant();
-	}
+	retour=VerifieLignes();
+	if(retour!=-1)
+		return retour;
+	
 	//on verifie les colonnes
-	for(j=0;j<=6;j++){
-		if(!(nbParColonne[j]<4)){
-			PionsAlignes pions;
-			for(i=0;i<nbParColonne[j];i++){
-				pions.ajouterPion(grille[i][j]);
-			}
-			if(pions.estGagnant()!=-1)
-				return pions.estGagnant();
-		}
-	}
+	retour=VerifieColonnes();
+	if(retour!=-1)
+		return retour;
 
 	//on verifie les diagonales
 	if (!(ligneRemplieMax<4)){

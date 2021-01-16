@@ -19,6 +19,8 @@ public:
 	int VerifieDiago(int l1,int c1,int l2,int c2);
 	int VerifieDiagoHB();
 	int VerifieDiagoBH();
+	int VerifieLignes();
+	int VerifieColonnes();
 	void majAffichage();
 	void majAffichageMorpion();
 	void majAffichageChiffres();

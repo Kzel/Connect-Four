@@ -217,3 +217,29 @@ int Partie::VerifieDiagoHB(){
 		return VerifieDiago(5,3,2,6);
 	return -1;
 }
+int Partie::VerifieLignes(){
+	int i,j;
+	for(i=0;i<ligneRemplieMax;i++){
+		PionsAlignes pions;
+		for(j=0;j<=6;j++){
+			pions.ajouterPion(grille[i][j]);
+		}
+		if(pions.estGagnant()!=-1)
+			return pions.estGagnant();
+	}
+	return -1;
+}
+int Partie::VerifieColonnes(){
+	int i,j;
+	for(j=0;j<=6;j++){
+		if(!(nbParColonne[j]<4)){
+			PionsAlignes pions;
+			for(i=0;i<nbParColonne[j];i++){
+				pions.ajouterPion(grille[i][j]);
+			}
+			if(pions.estGagnant()!=-1)
+				return pions.estGagnant();
+		}
+	}
+	return -1;
+}

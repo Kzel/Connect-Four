@@ -12,13 +12,13 @@ private:
 	float tpsJoueur[2];
 public:
 	PartieAvecResume(Parametres param);
-	int Comptage3Pions();
+	void Comptage3Pions(int joueur);
 	int ComptageUnitaire(int l1,int c1,int l2,int c2,int joueur);
 	int jeu();
 	void debutPartie();
 	void remplitGrille();
 	void reinitialisePartie();
-	void debutPartie();
+	//void debutPartie();
 	int VerifieFin();
 	int departageTemps();
 	int departagePions();

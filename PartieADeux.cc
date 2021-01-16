@@ -128,29 +128,16 @@ void PartieADeux::remplitGrille(){
 
 int PartieADeux::VerifieFin(){
 
-	int i,j;
-
+	int retour=-1;
 	//on verifie les lignes
-
-	for(i=0;i<ligneRemplieMax;i++){
-		PionsAlignes pions;
-		for(j=0;j<=6;j++){
-			pions.ajouterPion(grille[i][j]);
-		}
-		if(pions.estGagnant()!=-1)
-			return pions.estGagnant();
-	}
+	retour=VerifieLignes();
+	if(retour!=-1)
+		return retour;
+	
 	//on verifie les colonnes
-	for(j=0;j<=6;j++){
-		if(!(nbParColonne[j]<4)){
-			PionsAlignes pions;
-			for(i=0;i<nbParColonne[j];i++){
-				pions.ajouterPion(grille[i][j]);
-			}
-			if(pions.estGagnant()!=-1)
-				return pions.estGagnant();
-		}
-	}
+	retour=VerifieColonnes();
+	if(retour!=-1)
+		return retour;
 
 	//on verifie les diagonales
 	if (!(ligneRemplieMax<4)){
