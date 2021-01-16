@@ -147,7 +147,7 @@ int PartieIAMoyen::verifieColonne(){
 				return pions.estGagnant();
 		}
 	}
-    f (compteurTour==42){
+    if (compteurTour==42){
 		return 2;
 	}
     return -1;
@@ -175,7 +175,7 @@ void PartieIAMoyen::tourOrdi(){
 
 	}
     
-    if(verifieLigneLigne()==-1 || verifieLigne()==-1){
+    if(verifieLigne()==-1 || verifieLigne()==-1){
         while(nbParColonne[colonne]!=6){
 
             grille[nbParColonne[colonne]][colonne]=JoueurCourant;
