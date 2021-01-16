@@ -63,31 +63,105 @@ void PartieAvecResume::afficheResume(){
 		cout<<"Symbole pions: 1"<<endl;
 	else
 		cout<<"Symbole pions: X"<<endl;
-	cout<<"Nombre de 3 pions alignes: "<<nb3Pions[0]<<endl;
+	cout<<"Nombre de 3 pions alignes: "<<comptage3Pions(0)<<endl;
 	cout<<endl;
 	cout<<"Joueur 2: "<<tabJoueurs[1]<<endl;
 	if (par.getAffichageSymboles())
 		cout<<"Symbole pions: 2"<<endl;
 	else
 		cout<<"Symbole pions: O"<<endl;
-	cout<<"Nombre de 3 pions alignes: "<<nb3Pions[1]<<endl;
+	cout<<"Nombre de 3 pions alignes: "<<comptage3Pions(1)<<endl;
 	cout<<"----------------------------------"<<endl;
 }
 
 void PartieAvecResume::remplitGrille(){
+	int colonne;
+	cout<<"A ton tour "<<tabJoueurs[JoueurCourant]<<". Tes jetons sont les:";
+	if (!(par.getAffichageSymboles())){
+		if (!JoueurCourant){
+			cout<<"X"<<endl;
+		}
+		else{
+			cout<<"O"<<endl;
+		}
+	}
+	else{
+		if (!JoueurCourant){
+			cout<<"1"<<endl;
+		}
+		else{
+			cout<<"2"<<endl;
+		}
+
+	}
+	cout<<"Remplis la colonne de ton choix"<<endl;
+	cin>>colonne;
+	cout<<endl;
+	
+	//tant que la colonne choisie est remplie, on redemande au joueur de jouer
+	while(nbParColonne[colonne]==6){
+			
+		majAffichage();
+		cout<<"choisis une colonne non remplie"<<endl;
+		cin>>colonne;
+	} 
+	
+
+	grille[nbParColonne[colonne]][colonne]=JoueurCourant;
+	nbParColonne[colonne]++; //maj ligneRemplieMax
 	
 }
 void PartieAvecResume::reinitialisePartie(){
+ 	//on remet tous les attributs a leur état de base
+	ligneRemplieMax=-1;
+	compteurTour=0;
+	srand(time(NULL));
+	JoueurCourant=rand()%2;
+	for(int i=0;i<=1;i++){
+		tpsJoueur[i]=0;
+		nb3Pions[i]=0;
+	}
+	map<int,int>::iterator it;
+	//on remet le nombre de jetons par colonne à 0 partout
+	for (it = nbParColonne.begin(); it  !=  nbParColonne.end(); ++it){
+		it->second=0;
+
+	}
+
+ 	for (int i=0; i<6; i++)  
+	{
+		for (int j=0; j<7; j++)
+		{
+			grille[i][j]=-1;
+		}
+	}
+
+	//cas où le joueur a choisi de renommer les participants
+	if (demandeNom){
+		debutPartie();
+	}
 
 }
 void PartieAvecResume::debutPartie(){
-	cout<<"rien"<<endl;
+ 	if (demandeNom){
+ 		cout	<< "Quel est le nom du premier joueur ?" << endl;
+		cin>>tabJoueurs[0];
+		cout<<std::endl<<std::endl <<"Quel est le nom du second joueur ?" <<endl;
+		cin>>tabJoueurs[1];  
+ 	}
+ 	if(JoueurCourant==0){
+ 		cout<<endl;
+ 		cout<<"C'est " << tabJoueurs[0] << " qui commence"<<endl;
+ 	}
+ 	else{
+ 		cout<<"C'est " << tabJoueurs[1] << " qui commence"<<endl;
+ 	}
 }
 
 int PartieAvecResume::departagePions(){
 	//cas où le critere est le nombre d'alignements de 3 pions
-	Comptage3Pions(0);
-	Comptage3Pions(1);
+	comptage3Pions(0);
+	comptage3Pions(1);
 	if(nb3Pions[0]>nb3Pions[1]){
 		return 0;
 	}
@@ -99,36 +173,36 @@ int PartieAvecResume::departagePions(){
 	}
 
 }
-void PartieAvecResume::Comptage3Pions(int joueur){
+int PartieAvecResume::comptage3Pions(int joueur){
 	//c'est dans cette fonction qu'on change nb3Pions
 	int somme;
 	int i;
 	//nombre de 3 pions dans les lignes
 	//on rajoute ce nombre a somme
 	for(i=0;i<=5;i++)
-		somme+=ComptageUnitaire(i,0,i,6,joueur);
+		somme+=comptageUnitaire(i,0,i,6,joueur);
 	//nombre de 3 pions dans les colonnes
 	for(i=0;i<=6;i++)
-		somme+=ComptageUnitaire(0,i,5,i,joueur);
+		somme+=comptageUnitaire(0,i,5,i,joueur);
 	
 	//nombre de 3 pions dans les diagonales
 	//diagonales coin bas gauche vers coin haut droit
 	for(i=0;i<=3;i++)
-		somme+=ComptageUnitaire(3-i,0,5,2+i,joueur);
+		somme+=comptageUnitaire(3-i,0,5,2+i,joueur);
 	
 	for(i=0;i<=3;i++)
-		somme+=ComptageUnitaire(0,1+i,5-i,6,joueur);
+		somme+=comptageUnitaire(0,1+i,5-i,6,joueur);
 
 	//diagonales coin haut gauche vers coin bas droit
 	for(i=0;i<=3;i++)
-		somme+=ComptageUnitaire(2+i,0,0,2+i,joueur);
+		somme+=comptageUnitaire(2+i,0,0,2+i,joueur);
 	for(i=0;i<=3;i++)
-		somme+=ComptageUnitaire(5,1+i,0+i,6,joueur);
+		somme+=comptageUnitaire(5,1+i,0+i,6,joueur);
 
-	nb3Pions[joueur]=somme;
+	return somme;
 }
 
-int PartieAvecResume::ComptageUnitaire(int l1,int c1,int l2,int c2,int joueur){
+int PartieAvecResume::comptageUnitaire(int l1,int c1,int l2,int c2,int joueur){
 	PionsAlignes pions;
 	int i;
 	//on compte pour une ligne

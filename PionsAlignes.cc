@@ -54,6 +54,15 @@ int PionsAlignes::compte3Pions(int i){
 	return compteur;
 }
 
+void PionsAlignes::afficheVecteur(){
+	cout<<"vecteur:"<<endl;
+	vector<int>::iterator iter;
+	for (iter=pions.begin();iter!=pions.end();iter++){
+		
+		cout<<*iter<<", ";
+	}
+	cout<<endl;
+}
 void PionsAlignes::ajouterPion(int pion){
 	pions.push_back(pion);
 

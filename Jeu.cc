@@ -50,7 +50,7 @@ void Jeu::decisionMenu(int entree){
 			}
 			//sinon on crée une partie avec recap
 			else{
-				//partie=new PartieAvecResume(param);
+				partie=new PartieAvecResume(param);
 
 			}
 			lancerPartie();

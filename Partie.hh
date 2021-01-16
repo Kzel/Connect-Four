@@ -21,6 +21,7 @@ public:
 	int VerifieDiagoBH();
 	int VerifieLignes();
 	int VerifieColonnes();
+	void grilleTest();
 	void majAffichage();
 	void majAffichageMorpion();
 	void majAffichageChiffres();

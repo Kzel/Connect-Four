@@ -23,13 +23,40 @@ Partie::Partie(Parametres p){
 			grille[i][j]=-1;
 		}
 	}
+
 	srand(time(NULL));
 	JoueurCourant=rand()%2;
 	demandeNom=1;
 
 
 }
-
+void Partie::grilleTest(){
+	for(int i=0;i<=6;i++){
+		if(i<3 || i==6){
+			grille[0][i]=0;
+		}
+		else {
+			grille[0][i]=1;
+		}
+	}
+	for(int i=0;i<=6;i++){
+		if(i<3 || i>=5){
+			grille[1][i]=0;
+		}
+		else{
+			grille[1][i]=1;
+		}
+	}
+	for(int i=0;i<=6;i++){
+		if(i%2){
+			grille[2][i]=1;
+		}
+		else{
+			grille[2][i]=0;
+		}
+	}
+	
+}
 
 void Partie::majAffichageMorpionIndex(){
 
