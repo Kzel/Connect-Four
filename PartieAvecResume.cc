@@ -80,9 +80,9 @@ void PartieAvecResume::remplitGrille(){
 void PartieAvecResume::reinitialisePartie(){
 
 }
-// void PartieAvecResume::debutPartie(){
-// 	cout<<"rien"<<endl;
-// }
+void PartieAvecResume::debutPartie(){
+	cout<<"rien"<<endl;
+}
 
 int PartieAvecResume::departagePions(){
 	//cas où le critere est le nombre d'alignements de 3 pions

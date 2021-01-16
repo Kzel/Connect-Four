@@ -18,7 +18,7 @@ public:
 	void debutPartie();
 	void remplitGrille();
 	void reinitialisePartie();
-	//void debutPartie();
+	void debutPartie();
 	int VerifieFin();
 	int departageTemps();
 	int departagePions();
