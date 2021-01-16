@@ -34,15 +34,15 @@ int Parametres::consulteParam(){
 	switch (getNivDifficulte())
 	{
 	case 1:
-		cout<<"Le niveau est facile"<<endl
+		cout<<"Le niveau est facile"<<endl;
 		break;
 
 	case 2:
-		cout<<"Le niveau est moyen"<<endl
+		cout<<"Le niveau est moyen"<<endl;
 		break;
 
 	case 3:
-		cout<<"Le niveau est difficile"<<endl
+		cout<<"Le niveau est difficile"<<endl;
 		break;
 
 	default:
@@ -63,7 +63,7 @@ int Parametres::consulteParam(){
 	return 0;
 }
 
-int Parametres::afficherTous(){
+void Parametres::afficherTous(){
 	cout<<"Parametre"<<endl;
 	if(getAffichageSymboles()){
 		cout<<"1: Affichage les symboles :O"<<endl;
@@ -93,7 +93,7 @@ int Parametres::afficherTous(){
 		cout<<"4: Niveau :moyen"<<endl;
 		break;
 
-	case 1:
+	case 3:
 		cout<<"4: Niveau :Difficile"<<endl;
 		break;
 	default:
@@ -115,7 +115,7 @@ int Parametres::afficherTous(){
 
 }
 
-int Parametres::Changer(num){
+void Parametres::Changer(int num){
 	int x1,x2,x3,x4,x5,x6,x7;
 	cout<<"Comment vous voulez changer ce parametre?";
 	cout<<"Tapez ce que vous voulez";
@@ -133,7 +133,7 @@ int Parametres::Changer(num){
 		break;
 
 	case 2:
-		cout<<"0: N'afficher pas d'index" :O<<endl;
+		cout<<"0: N'afficher pas d'index"<<endl;
 		cout<<"1: Afficher les indexs"<<endl;
 		cin>>x2;
 		if(cin){
