@@ -27,7 +27,7 @@ int PartieIAMoyen::finPartie(int issue){
  			cout<<"Felicitations ! Tu as gagne "<<endl;
  			break;
  		case 1:
- 			cout<<"C'est dommage, Tu as perdue "<<endl;
+ 			cout<<"C'est dommage, Tu as perdue "<<<<endl;
 
  			break;
  		case 2:
