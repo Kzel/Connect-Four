@@ -101,9 +101,9 @@ void Parametres::afficherTous(){
 	}
 
 	if(getSansEgalite()){
-		cout<<"5: Sans egalite :Oui"<<endl;
+		cout<<"5: Sans egalite :3 pions alignes"<<endl;
 	}else{
-		cout<<"5: Sans egalite :Non"<<endl;
+		cout<<"5: Sans egalite :rapidite"<<endl;
 	}
 		
 	if(getAvecResume()){
@@ -145,8 +145,8 @@ void Parametres::Changer(int num){
 
 	case 3:
 	
-		cout<<"0: Avec critere Egalite"<<endl;
-		cout<<"1: Sans critere Egalite"<<endl;
+		cout<<"0: 3 pions alignes"<<endl;
+		cout<<"1: rapidite"<<endl;
 		cin>>x3;
 		if(cin){
 			setCritereEgalite(x3);
