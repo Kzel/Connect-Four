@@ -10,9 +10,15 @@ class PartieIAFacile: public Partie{
 public:
 	PartieIAFacile(Parametres param);
     public:
-    void tourOrdi();
-    
+    void debutPartie();
+    int finPartie(int issue);
+    void reinitialisePartie();
+    void remplitGrille();
+    int tourOrdi();
+    int jeu();
 
+protected:
+    string joueurnom;
 
 
 }
