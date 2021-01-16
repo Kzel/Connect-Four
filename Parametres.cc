@@ -26,9 +26,9 @@ int Parametres::consulteParam(){
 	}
 
 	if(getCritereEgalite()==0){
-		cout<<"L'option de la critere d'egalite est ferme"<<endl;
+		cout<<"L'option de la critere d'egalite est 3pions alignes"<<endl;
 	}else{
-		cout<<"L'option de la critere d'egalite est ouverte"<<endl;
+		cout<<"L'option de la critere d'egalite est rapidite"<<endl;
 	}
 
 	switch (getNivDifficulte())
