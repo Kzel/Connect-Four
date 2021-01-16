@@ -26,10 +26,11 @@ int PartieIAFacile::finPartie(int issue){
  		case 0:
  			cout<<"Felicitations ! Tu as gagne "<<endl;
  			break;
- 		case 1:
- 			cout<<"C'est dommage, Tu as perdue "<<<<endl;
 
+ 		case 1:
+ 			cout<<"C'est dommage, Tu as perdue "<<endl;
  			break;
+
  		case 2:
  			cout<<"Match nul. Un coude à coude VREUMENT"<<endl; 
  			break;
@@ -119,10 +120,10 @@ void PartieIAFacile::remplitGrille(){
 
 }
  	
-int PartieIAFacile::tourOrdi(){
+int PartieIAFacile::verifieLigne(){
     int ligneRemplieMax=getLigneRemplieMax();
-    
-	for(i=0;i<ligneRemplieMax;i++){
+    int i,j;
+	for( i=0;i<ligneRemplieMax;i++){
 		PionsAlignes pions;
 		for(j=0;j<=6;j++){
 			pions.ajouterPion(grille[i][j]);
@@ -130,6 +131,41 @@ int PartieIAFacile::tourOrdi(){
 		if(pions.estGagnant()!=-1)
 			return pions.estGagnant();
 	}
+	if (compteurTour==42){
+		return 2;
+	}
+    return -1;
+
+}
+
+void PartieIAFacile::tourOrdi(){
+    int colonne=rand()%6;
+    if (!(par.getAffichageSymboles())){
+		if (!JoueurCourant){
+			cout<<"X"<<endl;
+		}
+		else{
+			cout<<"O"<<endl;
+		}
+	}
+	else{
+		if (!JoueurCourant){
+			cout<<"1"<<endl;
+		}
+		else{
+			cout<<"2"<<endl;
+		}
+
+	}
+
+    if(verifieLigne()==-1){
+        while(nbParColonne[colonne]!=6){
+
+            grille[nbParColonne[colonne]][colonne]=JoueurCourant;
+	        nbParColonne[colonne]++;
+        }
+    }
+    
 
 }
 

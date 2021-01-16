@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <time.h>
+#include <stdlib.h>
 #include "Partie.hh"
 #include "Parametres.hh"
 
@@ -14,7 +15,8 @@ public:
     int finPartie(int issue);
     void reinitialisePartie();
     void remplitGrille();
-    int tourOrdi();
+    int verifieLigne();
+    void tourOrdi();
     int jeu();
 
 protected:
