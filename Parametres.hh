@@ -7,6 +7,8 @@ class Parametres{
 public:
 	Parametres();
 	int consulteParam();
+	int afficherTous();
+	int Changer(num);
 	//getters
 	int getAvecResume(){return avecResume;};
 	int getNivDifficulte(){return nivDifficulte;};
