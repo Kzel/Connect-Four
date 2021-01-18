@@ -10,9 +10,11 @@ PartieAvecResume::PartieAvecResume(Parametres param):PartieADeux(param){
 
 int PartieAvecResume::finPartie(int issue){
 	 int choixFin;
+
  	cout<<"----------------------------------"<<endl;
  	// on affiche le resume si il y a lieu
  	if(par.getAvecResume())
+
  		afficheResume();
  	switch (issue){
  		case 0:
@@ -54,6 +56,11 @@ int PartieAvecResume::departageTemps(){
 }
 
 void PartieAvecResume::afficheResume(){
+	 //on maj nb3Pions au cas où on 
+ 	//ne serait pas rentré dans departagePions	
+	comptage3Pions(0);
+	comptage3Pions(1);
+
 	cout<<"----------------------------------"<<endl;
 	cout<<"RESUME DE LA PARTIE:"<<endl;
 	cout<<endl;
@@ -63,14 +70,14 @@ void PartieAvecResume::afficheResume(){
 		cout<<"Symbole pions: 1"<<endl;
 	else
 		cout<<"Symbole pions: X"<<endl;
-	cout<<"Nombre de 3 pions alignes: "<<comptage3Pions(0)<<endl;
+	cout<<"Nombre de 3 pions alignes: "<<nb3Pions[0]<<endl;
 	cout<<endl;
 	cout<<"Joueur 2: "<<tabJoueurs[1]<<endl;
 	if (par.getAffichageSymboles())
 		cout<<"Symbole pions: 2"<<endl;
 	else
 		cout<<"Symbole pions: O"<<endl;
-	cout<<"Nombre de 3 pions alignes: "<<comptage3Pions(1)<<endl;
+	cout<<"Nombre de 3 pions alignes: "<<nb3Pions[1]<<endl;
 	cout<<"----------------------------------"<<endl;
 }
 
@@ -173,9 +180,9 @@ int PartieAvecResume::departagePions(){
 	}
 
 }
-int PartieAvecResume::comptage3Pions(int joueur){
+void PartieAvecResume::comptage3Pions(int joueur){
 	//c'est dans cette fonction qu'on change nb3Pions
-	int somme;
+	int somme=0;
 	int i;
 	//nombre de 3 pions dans les lignes
 	//on rajoute ce nombre a somme
@@ -184,22 +191,23 @@ int PartieAvecResume::comptage3Pions(int joueur){
 	//nombre de 3 pions dans les colonnes
 	for(i=0;i<=6;i++)
 		somme+=comptageUnitaire(0,i,5,i,joueur);
-	
+
 	//nombre de 3 pions dans les diagonales
 	//diagonales coin bas gauche vers coin haut droit
 	for(i=0;i<=3;i++)
 		somme+=comptageUnitaire(3-i,0,5,2+i,joueur);
-	
+
 	for(i=0;i<=3;i++)
 		somme+=comptageUnitaire(0,1+i,5-i,6,joueur);
 
 	//diagonales coin haut gauche vers coin bas droit
 	for(i=0;i<=3;i++)
 		somme+=comptageUnitaire(2+i,0,0,2+i,joueur);
+
 	for(i=0;i<=3;i++)
 		somme+=comptageUnitaire(5,1+i,0+i,6,joueur);
 
-	return somme;
+	nb3Pions[joueur]=somme;
 }
 
 int PartieAvecResume::comptageUnitaire(int l1,int c1,int l2,int c2,int joueur){

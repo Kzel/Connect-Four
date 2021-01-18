@@ -58,6 +58,20 @@ void Partie::grilleTest(){
 	
 }
 
+void Partie::grilleEgalite(){
+	for(int i=0;i<=5;i++){
+		for (int j=0;j<7;j++){
+			grille[i][j]=0;
+
+		}
+	}
+	grille[5][3]=1;
+	grille[5][4]=1;
+	grille[5][6]=1;
+	grille[4][1]=1;
+	grille[5][3]=1;
+}
+
 void Partie::majAffichageMorpionIndex(){
 
 	int i,j;

@@ -22,6 +22,7 @@ public:
 	int VerifieLignes();
 	int VerifieColonnes();
 	void grilleTest();
+	void grilleEgalite();
 	void majAffichage();
 	void majAffichageMorpion();
 	void majAffichageChiffres();

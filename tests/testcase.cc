@@ -32,7 +32,6 @@ TEST_CASE("Partie: detection diagonale"){
 	cout<<endl;
 	cout<<"VerifieDiago:"<<p.VerifieDiago(5,3,2,6)<<endl;
 	cout<<"VerifieDiagoBH:"<<p.VerifieDiagoHB()<<endl;
-
 }
 
 // TEST_CASE("maj ligneRemplieMax"){
@@ -47,14 +46,7 @@ TEST_CASE("Partie: detection diagonale"){
 // 	}
 // }
 
-TEST_CASE("comptage 3 pions alignes"){
-	Parametres param;
-	PartieAvecResume p(param);
-	p.grilleTest();
-	p.majAffichage();
-	cout<<"J1 pion :"<<p.comptage3Pions(0)<<endl;
-	cout<<"J2 pion :"<<p.comptage3Pions(1)<<endl;
-}
+
 
 TEST_CASE("PionsAlignes compte3Pions"){
 	PionsAlignes p;
@@ -78,9 +70,22 @@ TEST_CASE("PartieAvecResume comptageUnitaire"){
 	p.majAffichage();
 	cout<<"ligne 0 pour j1:"<<p.comptageUnitaire(0,0,0,6,0)<<endl;
 	cout<<"colonne pr j2:"<<p.comptageUnitaire(0,5,2,5,1)<<endl;
-	cout<<"diago j2:"<<p.comptageUnitaire(2,1,0,3,1)<<endl;
-	cout<<"diago:"<<p.comptageUnitaire(0,3,2,5,1)<<endl;
+	cout<<"diago 2,1-0,3:"<<p.comptageUnitaire(2,1,0,3,1)<<endl;
+	cout<<"diago 0,3-2,5:"<<p.comptageUnitaire(0,3,2,5,1)<<endl;
 
 }
+TEST_CASE("comptage 3 pions alignes"){
+	Parametres param;
+	PartieAvecResume p(param);
+	p.grilleTest();
+	p.majAffichage();
+	cout<<"J1 pion :"<<p.comptage3Pions(0)<<endl;
+	cout<<"J2 pion :"<<p.comptage3Pions(1)<<endl;
+}
+
+TEST_CASE("departage egalite sur pions"){
+
+}
+
 //tester PionsAlignes et
 // tester differents cas de departagement d'égalité

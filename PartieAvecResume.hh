@@ -12,7 +12,7 @@ private:
 	float tpsJoueur[2];
 public:
 	PartieAvecResume(Parametres param);
-	int comptage3Pions(int joueur);
+	void comptage3Pions(int joueur);
 	int comptageUnitaire(int l1,int c1,int l2,int c2,int joueur);
 	int jeu();
 	void debutPartie();
