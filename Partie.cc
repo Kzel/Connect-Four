@@ -59,17 +59,35 @@ void Partie::grilleTest(){
 }
 
 void Partie::grilleEgalite(){
+	compteurTour=42;
 	for(int i=0;i<=5;i++){
 		for (int j=0;j<7;j++){
-			grille[i][j]=0;
+			(*this)(i,j)=0;
 
 		}
 	}
-	grille[5][3]=1;
-	grille[5][4]=1;
-	grille[5][6]=1;
-	grille[4][1]=1;
-	grille[5][3]=1;
+	(*this)(5,3)=1;
+	(*this)(5,4)=1;
+	(*this)(5,6)=1;
+	(*this)(4,1)=1;
+	(*this)(4,3)=1;
+	(*this)(3,0)=1;
+	(*this)(3,2)=1;
+	(*this)(3,3)=1;
+	(*this)(3,4)=1;
+	(*this)(3,6)=1;
+	(*this)(2,0)=1;
+	(*this)(2,2)=1;
+	(*this)(2,4)=1;
+	(*this)(2,5)=1;
+	(*this)(2,6)=1;
+	(*this)(1,0)=1;
+	(*this)(1,1)=1;
+	(*this)(1,3)=1;
+	(*this)(0,2)=1;
+	(*this)(0,3)=1;
+	(*this)(0,6)=1;
+
 }
 
 void Partie::majAffichageMorpionIndex(){

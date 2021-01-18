@@ -46,14 +46,6 @@ int PartieAvecResume::finPartie(int issue){
  	return choixFin;
 }
 
-int PartieAvecResume::departageTemps(){
-		if(tpsJoueur[0]>tpsJoueur[1]){
-			return 0;
-		}
-		else {
-			return 1;
-		}
-}
 
 void PartieAvecResume::afficheResume(){
 	 //on maj nb3Pions au cas où on 
@@ -71,6 +63,7 @@ void PartieAvecResume::afficheResume(){
 	else
 		cout<<"Symbole pions: X"<<endl;
 	cout<<"Nombre de 3 pions alignes: "<<nb3Pions[0]<<endl;
+	cout<<"Temps des décisions: "<<tpsJoueur[0]<<" secondes"<<endl;
 	cout<<endl;
 	cout<<"Joueur 2: "<<tabJoueurs[1]<<endl;
 	if (par.getAffichageSymboles())
@@ -78,11 +71,12 @@ void PartieAvecResume::afficheResume(){
 	else
 		cout<<"Symbole pions: O"<<endl;
 	cout<<"Nombre de 3 pions alignes: "<<nb3Pions[1]<<endl;
+	cout<<"Temps des décisions: "<<tpsJoueur[1]<<" secondes"<<endl;
 	cout<<"----------------------------------"<<endl;
 }
 
-void PartieAvecResume::remplitGrille(){
-	int colonne;
+//appelée dans remplitGrille()
+void PartieAvecResume::affichageTour(){
 	cout<<"A ton tour "<<tabJoueurs[JoueurCourant]<<". Tes jetons sont les:";
 	if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
@@ -101,23 +95,40 @@ void PartieAvecResume::remplitGrille(){
 		}
 
 	}
+}
+
+void PartieAvecResume::remplitGrille(){
+	int colonne;
+	time_t debutTour;
+	time_t finTour;
+	double tpsTour;
+
+	affichageTour();
+
+	time(&debutTour);
 	cout<<"Remplis la colonne de ton choix"<<endl;
 	cin>>colonne;
+	time(&finTour);
+	tpsTour=difftime(finTour,debutTour);
 	cout<<endl;
 	
 	//tant que la colonne choisie est remplie, on redemande au joueur de jouer
 	while(nbParColonne[colonne]==6){
 			
 		majAffichage();
+		time(&debutTour);
 		cout<<"choisis une colonne non remplie"<<endl;
 		cin>>colonne;
+		time(&finTour);
+		tpsTour=difftime(finTour,debutTour);
 	} 
-	
+	tpsJoueur[JoueurCourant]+=tpsTour; //on rajoute le temps du tour au temps global de jeu du joueur
 
 	grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++; //maj ligneRemplieMax
 	
 }
+
 void PartieAvecResume::reinitialisePartie(){
  	//on remet tous les attributs a leur état de base
 	ligneRemplieMax=-1;
@@ -165,10 +176,20 @@ void PartieAvecResume::debutPartie(){
  	}
 }
 
+int PartieAvecResume::departageTemps(){
+		if(tpsJoueur[0]>tpsJoueur[1]){
+			return 1;
+		}
+		else {
+			return 0;
+		}
+}
+
 int PartieAvecResume::departagePions(){
 	//cas où le critere est le nombre d'alignements de 3 pions
 	comptage3Pions(0);
 	comptage3Pions(1);
+
 	if(nb3Pions[0]>nb3Pions[1]){
 		return 0;
 	}
@@ -183,15 +204,17 @@ int PartieAvecResume::departagePions(){
 void PartieAvecResume::comptage3Pions(int joueur){
 	//c'est dans cette fonction qu'on change nb3Pions
 	int somme=0;
+	//cout<<"comptage3Pions joueur "<<joueur<<":somme0:"<<somme<<endl;
 	int i;
 	//nombre de 3 pions dans les lignes
 	//on rajoute ce nombre a somme
 	for(i=0;i<=5;i++)
 		somme+=comptageUnitaire(i,0,i,6,joueur);
+	//cout<<"comptage3Pions joueur "<<joueur<<" : somme1:"<<somme<<endl;
 	//nombre de 3 pions dans les colonnes
 	for(i=0;i<=6;i++)
 		somme+=comptageUnitaire(0,i,5,i,joueur);
-
+	//cout<<"comptage3Pions joueur "<<joueur<<" :somme2:"<<somme<<endl;
 	//nombre de 3 pions dans les diagonales
 	//diagonales coin bas gauche vers coin haut droit
 	for(i=0;i<=3;i++)
@@ -199,6 +222,7 @@ void PartieAvecResume::comptage3Pions(int joueur){
 
 	for(i=0;i<=3;i++)
 		somme+=comptageUnitaire(0,1+i,5-i,6,joueur);
+	//cout<<"comptage3Pions joueur "<<joueur<<" :somme3:"<<somme<<endl;
 
 	//diagonales coin haut gauche vers coin bas droit
 	for(i=0;i<=3;i++)
@@ -206,7 +230,7 @@ void PartieAvecResume::comptage3Pions(int joueur){
 
 	for(i=0;i<=3;i++)
 		somme+=comptageUnitaire(5,1+i,0+i,6,joueur);
-
+	//cout<<"comptage3Pions joueur "<<joueur<<" :somme4:"<<somme<<endl;
 	nb3Pions[joueur]=somme;
 }
 
