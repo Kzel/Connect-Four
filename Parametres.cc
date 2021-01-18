@@ -12,7 +12,7 @@ Parametres::Parametres(){
 
 }
 
-int Parametres::consulteParam(){
+void Parametres::consulteParam(){
 	if(getAffichageSymboles()==0){
 		cout<<"L'option de l'affichage de symbol est ferme"<<endl;
 	}else{
@@ -60,7 +60,6 @@ int Parametres::consulteParam(){
 	}else{
 		cout<<"L'option du resume est ouverte"<<endl;
 	}
-	return 0;
 }
 
 void Parametres::afficherTous(){
