@@ -6,7 +6,7 @@
 class Parametres{
 public:
 	Parametres();
-	int consulteParam();
+	void consulteParam();
 	void afficherTous();
 	void Changer(int num);
 	//getters
