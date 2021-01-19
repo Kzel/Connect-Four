@@ -12,57 +12,8 @@ Parametres::Parametres(){
 
 }
 
-void Parametres::consulteParam(){
-	if(getAffichageSymboles()==0){
-		cout<<"L'option de l'affichage de symbol est ferme"<<endl;
-	}else{
-		cout<<"L'option de l'affichage de symbol est ouverte"<<endl;
-	}
-
-	if(getAffichageIndex()==0){
-		cout<<"L'option de l'affichage d'Index est ferme"<<endl;
-	}else{
-		cout<<"L'option de l'affichage d'Index est ouverte"<<endl;
-	}
-
-	if(getCritereEgalite()==0){
-		cout<<"L'option de la critere d'egalite est 3pions alignes"<<endl;
-	}else{
-		cout<<"L'option de la critere d'egalite est rapidite"<<endl;
-	}
-
-	switch (getNivDifficulte())
-	{
-	case 1:
-		cout<<"Le niveau est facile"<<endl;
-		break;
-
-	case 2:
-		cout<<"Le niveau est moyen"<<endl;
-		break;
-
-	case 3:
-		cout<<"Le niveau est difficile"<<endl;
-		break;
-
-	default:
-		break;
-	}
-
-	if(getSansEgalite()==0){
-		cout<<"L'option de sans egalite est ferme"<<endl;
-	}else{
-		cout<<"L'option de sans egalite est ouverte"<<endl;
-	}
-
-	if(getAvecResume()==0){
-		cout<<"L'option du resume est ferme"<<endl;
-	}else{
-		cout<<"L'option du resume est ouverte"<<endl;
-	}
-}
-
-void Parametres::afficherTous(){
+int Parametres::consulteParam(){
+	int numero;
 	cout<<"Parametre"<<endl;
 	if(getAffichageSymboles()){
 		cout<<"1: Affichage les symboles :O/X"<<endl;
@@ -111,8 +62,13 @@ void Parametres::afficherTous(){
 		cout<<"6: Avec resume :Non"<<endl;
 	}
 	cout<<"Tapez le numero du parametre que vous voulez changer"<<endl;
-
+	cin>>numero;
+	if(numero!=7){
+		Changer(numero);
+	}
+	return numero;
 }
+
 
 void Parametres::Changer(int num){
 	int x1,x2,x3,x4,x5,x6;
@@ -121,8 +77,8 @@ void Parametres::Changer(int num){
 	switch (num)
 	{
 	case 1:
-		cout<<"0: Affichage les symboles :O "<<endl;
-		cout<<"1: Affichage les symboles :X "<<endl;
+		cout<<"0: Affichage des symboles :O/X "<<endl;
+		cout<<"1: Affichage des symboles :1/2 "<<endl;
 		cin>>x1;
 		if(cin){
 			setAffichageSymboles(x1);
@@ -132,7 +88,7 @@ void Parametres::Changer(int num){
 		break;
 
 	case 2:
-		cout<<"0: N'afficher pas d'index"<<endl;
+		cout<<"0: Ne pas afficher pas d'index"<<endl;
 		cout<<"1: Afficher les indexs"<<endl;
 		cin>>x2;
 		if(cin){
