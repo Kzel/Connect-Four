@@ -14,5 +14,5 @@ public:
     int jeu();
 
 protected:
-    string joueurnom;
+   string tabJoueurs[2];
 };
