@@ -96,6 +96,36 @@ void PartieAvecResume::affichageTour(){
 
 	}
 }
+//pour les tests
+//on se met dans le cas d'une fin de partie
+//où le nombre d'alignements de 3 pions est le même
+void PartieAvecResume::grilleMemePions(){
+	tpsJoueur[0]=24.7;
+	tpsJoueur[1]=42.4;
+	compteurTour=42;
+	for(int i=0;i<6;i++){
+		if(i%2==0){
+			for(int j=0;j<=6;j++){
+				if(j<=2 || j==6){
+					(*this)(i,j)=0;
+				}
+				else{
+					(*this)(i,j)=1;
+				}
+			}
+		}
+		else{
+			for(int j=0;j<=6;j++){
+				if(j<=2 || j==6){
+					(*this)(i,j)=1;
+				}
+				else{
+					(*this)(i,j)=0;
+				}
+			}
+		}
+	}
+}
 
 void PartieAvecResume::remplitGrille(){
 	int colonne;
@@ -177,6 +207,7 @@ void PartieAvecResume::debutPartie(){
 }
 
 int PartieAvecResume::departageTemps(){
+
 		if(tpsJoueur[0]>tpsJoueur[1]){
 			return 1;
 		}
@@ -186,6 +217,7 @@ int PartieAvecResume::departageTemps(){
 }
 
 int PartieAvecResume::departagePions(){
+
 	//cas où le critere est le nombre d'alignements de 3 pions
 	comptage3Pions(0);
 	comptage3Pions(1);

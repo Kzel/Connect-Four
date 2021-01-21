@@ -30,7 +30,10 @@ Partie::Partie(Parametres p){
 
 
 }
+
+//pour les tests
 void Partie::grilleTest(){
+	// fonction créant une grille remplissant 3 lignes d'une certaine maniere
 	for(int i=0;i<=6;i++){
 		if(i<3 || i==6){
 			grille[0][i]=0;
@@ -58,6 +61,7 @@ void Partie::grilleTest(){
 	
 }
 
+//pour les tests
 void Partie::grilleEgalite(){
 	compteurTour=42;
 	for(int i=0;i<=5;i++){
@@ -89,6 +93,8 @@ void Partie::grilleEgalite(){
 	(*this)(0,6)=1;
 
 }
+
+
 
 void Partie::majAffichageMorpionIndex(){
 
