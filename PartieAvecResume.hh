@@ -21,6 +21,7 @@ public:
 	double getTpsJoueur(int joueur){return tpsJoueur[joueur];};
 	void debutPartie();
 	void remplitGrille();
+	void grilleMemePions();
 	void affichageTour();
 	void reinitialisePartie();
 	int VerifieFin();

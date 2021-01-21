@@ -112,5 +112,15 @@ TEST_CASE("calcul temps joueurs"){
 	}
 }
 
+TEST_CASE("egalite:meme nombre d'alignement de 3 pions+critereEgalite=pions"){
+	Parametres param;
+	PartieAvecResume p(param);
+	p.grilleMemePions();
+	p.majAffichage();
+	cout<<"joueur1 temps:"<< p.getTpsJoueur(0)<<" secondes"<<endl;
+	cout<<"joueur2 temps:"<< p.getTpsJoueur(1)<<" secondes"<<endl;
+	REQUIRE(p.VerifieFin()==0);
+}
+
 //tester PionsAlignes et
 // tester differents cas de departagement d'égalité
