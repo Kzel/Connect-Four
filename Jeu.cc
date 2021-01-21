@@ -27,11 +27,11 @@ void Jeu::decisionMenu(int entree){
 
 		case 1:
 			if (param.getNivDifficulte()==0){
-				//partie=new PartieIAfacile(param);
+				//partie=new PartieIAFacile(param);
 
 			}
 			else if(param.getNivDifficulte()==1){
-				//partie=new PartieIAmoyen(param);
+				partie=new PartieIAMoyen(param);
 
 			}
 			else{

@@ -16,9 +16,9 @@ int Parametres::consulteParam(){
 	int numero;
 	cout<<"Parametre"<<endl;
 	if(getAffichageSymboles()){
-		cout<<"1: Affichage les symboles :O/X"<<endl;
-	}else{
 		cout<<"1: Affichage les symboles :1/2"<<endl;
+	}else{
+		cout<<"1: Affichage les symboles :O/X"<<endl;
 	}
 
 	if(getAffichageIndex()){

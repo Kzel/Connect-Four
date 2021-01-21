@@ -2,6 +2,7 @@
 
 PartieIAFacile::PartieIAFacile(Parametres param):Partie(param){
 
+
 }
 void PartieIAFacile::debutPartie(){
     
@@ -120,21 +121,32 @@ void PartieIAFacile::remplitGrille(){
 
 }
  	
-int PartieIAFacile::verifieLigne(){
-    int ligneRemplieMax=getLigneRemplieMax();
-    int i,j;
-	for( i=0;i<ligneRemplieMax;i++){
-		PionsAlignes pions;
-		for(j=0;j<=6;j++){
-			pions.ajouterPion(grille[i][j]);
-		}
-		if(pions.estGagnant()!=-1)
-			return pions.estGagnant();
+int PartieIAFacile::VerifieFin(){
+    int retour=-1;
+	//on verifie les lignes
+	retour=VerifieLignes();
+	if(retour!=-1)
+		return retour;
+	
+	//on verifie les colonnes
+	retour=VerifieColonnes();
+	if(retour!=-1)
+		return retour;
+
+	//on verifie les diagonales
+	if (!(ligneRemplieMax<4)){
+		if (VerifieDiagoBH()!=-1)
+			return VerifieDiagoBH();
+		if (VerifieDiagoHB()!=-1)
+			return VerifieDiagoHB();
 	}
+
+	//on verifie si les joueurs n'ont pas déposé tous leurs pions
 	if (compteurTour==42){
 		return 2;
 	}
-    return -1;
+
+	return -1;
 
 }
 
@@ -158,7 +170,7 @@ void PartieIAFacile::tourOrdi(){
 
 	}
 
-    if(verifieLigne()==-1){
+    if(VerifieLignes()==-1){
         while(nbParColonne[colonne]!=6){
 
             grille[nbParColonne[colonne]][colonne]=JoueurCourant;

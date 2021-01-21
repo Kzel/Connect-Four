@@ -1,11 +1,6 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <map>
-#include <time.h>
-#include <stdlib.h>
-#include "Partie.hh"
 #include "Parametres.hh"
+#include "Partie.hh"
 
 class PartieIAFacile: public Partie{
 public:
@@ -14,7 +9,7 @@ public:
     int finPartie(int issue);
     void reinitialisePartie();
     void remplitGrille();
-    int verifieLigne();
+    int VerifieFin();
     void tourOrdi();
     int jeu();
 
