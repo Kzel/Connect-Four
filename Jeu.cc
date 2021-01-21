@@ -16,6 +16,10 @@ void Jeu::menu(){
 	cout<<"Tape l'un des chiffres indiques pour aller vers ce qui t'interesse!"<<endl;
 	cout<<"1: Jouer	contre IA		2: Jouer a 2		3: Parametres"<<endl;
 	cin>>entree;
+	while(entree>3 || entree<1){
+		cout<<"option non proposée. Choisis un numero valide."<<endl;
+		cin>>entree;
+	}
 	decisionMenu(entree);
 
 
@@ -73,6 +77,6 @@ void Jeu::lancerPartie(){
 }
 
 void Jeu::lancerParam(){
-	while(!param.consulteParam());
+	while(param.consulteParam()!=7);
 	menu();
 }

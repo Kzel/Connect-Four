@@ -9,13 +9,11 @@ PartieAvecResume::PartieAvecResume(Parametres param):PartieADeux(param){
 }
 
 int PartieAvecResume::finPartie(int issue){
-	 int choixFin;
+
 
  	cout<<"----------------------------------"<<endl;
- 	// on affiche le resume si il y a lieu
- 	if(par.getAvecResume())
-
- 		afficheResume();
+ 	// on affiche le resume
+ 	afficheResume();
  	switch (issue){
  		case 0:
  			cout<<"Felicitations ! Tu as gagne "<<tabJoueurs[0]<<endl;
@@ -29,21 +27,8 @@ int PartieAvecResume::finPartie(int issue){
  			break;
  	}
  	
- 	cout<<"Tu veux faire quoi maintenant?"<<endl;
- 	cout<<"1:Recommencer		2:Recommencer en changeant les noms			3:Menu"<<endl;
- 	cin>>choixFin;
 
- 	//on met a jour demandeNom pour savoir si on demande les noms a la prochaine partie
- 	if (choixFin==1){
- 		demandeNom=0;
- 	}
- 	else{
- 		demandeNom=1;
- 	}
- 	//si le choix n'est pas le menu, on recommence une partie
- 	if (choixFin!=3)
- 		reinitialisePartie();
- 	return choixFin;
+ 	return choixSuite();
 }
 
 
@@ -142,12 +127,12 @@ void PartieAvecResume::remplitGrille(){
 	tpsTour=difftime(finTour,debutTour);
 	cout<<endl;
 	
-	//tant que la colonne choisie est remplie, on redemande au joueur de jouer
-	while(nbParColonne[colonne]==6){
+	//tant que la colonne choisie est remplie/pas valide, on redemande au joueur de jouer
+	while(nbParColonne[colonne]==6 || colonne > 6){
 			
-		majAffichage();
+		//majAffichage();
 		time(&debutTour);
-		cout<<"choisis une colonne non remplie"<<endl;
+		cout<<"choisis une colonne non remplie et valide"<<endl;
 		cin>>colonne;
 		time(&finTour);
 		tpsTour=difftime(finTour,debutTour);
@@ -189,21 +174,6 @@ void PartieAvecResume::reinitialisePartie(){
 		debutPartie();
 	}
 
-}
-void PartieAvecResume::debutPartie(){
- 	if (demandeNom){
- 		cout	<< "Quel est le nom du premier joueur ?" << endl;
-		cin>>tabJoueurs[0];
-		cout<<std::endl<<std::endl <<"Quel est le nom du second joueur ?" <<endl;
-		cin>>tabJoueurs[1];  
- 	}
- 	if(JoueurCourant==0){
- 		cout<<endl;
- 		cout<<"C'est " << tabJoueurs[0] << " qui commence"<<endl;
- 	}
- 	else{
- 		cout<<"C'est " << tabJoueurs[1] << " qui commence"<<endl;
- 	}
 }
 
 int PartieAvecResume::departageTemps(){
@@ -339,15 +309,3 @@ int PartieAvecResume::VerifieFin(){
 	return -1;	
 }
 
- int PartieAvecResume::jeu(){
-
- 	while(VerifieFin()==-1){
- 		remplitGrille();
- 		majAttributs();
- 		majAffichage();
-
- 	}
- 	return finPartie(VerifieFin());
-
- 	
- }

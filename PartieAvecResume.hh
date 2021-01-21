@@ -17,9 +17,7 @@ public:
 	PartieAvecResume(Parametres param);
 	void comptage3Pions(int joueur);
 	int comptageUnitaire(int l1,int c1,int l2,int c2,int joueur);
-	int jeu();
 	double getTpsJoueur(int joueur){return tpsJoueur[joueur];};
-	void debutPartie();
 	void remplitGrille();
 	void grilleMemePions();
 	void affichageTour();

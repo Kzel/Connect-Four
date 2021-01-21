@@ -8,11 +8,12 @@ class PartieADeux: public Partie{
 public:
 	PartieADeux(Parametres param);
 	int jeu();
-	void reinitialisePartie();
-	void remplitGrille();
+	virtual void reinitialisePartie();
+	virtual void remplitGrille();
 	void debutPartie();
-	int VerifieFin();
-	int finPartie(int issue);
+	int choixSuite();
+	virtual int VerifieFin();
+	virtual int finPartie(int issue);
 
 
 protected:

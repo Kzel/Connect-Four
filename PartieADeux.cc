@@ -27,7 +27,7 @@ PartieADeux::PartieADeux(Parametres param):Partie(param){
  //on rdemande au joueur si il veut recommencer ou retourner au menu
  //et on retourne sa réponse
  int PartieADeux::finPartie(int issue){
- 	int choixFin;
+
  	cout<<"----------------------------------"<<endl;
  	switch (issue){
  		case 0:
@@ -41,10 +41,19 @@ PartieADeux::PartieADeux(Parametres param):Partie(param){
  			cout<<"Match nul. Un coude à coude VREUMENT"<<endl; 
  			break;
  	}
- 	 cout<<"Tu veux faire quoi maintenant?"<<endl;
+
+ 	return choixSuite();
+ }
+
+int PartieADeux::choixSuite(){
+	 int choixFin;
+ 	cout<<"Tu veux faire quoi maintenant?"<<endl;
  	cout<<"1:Recommencer		2:Recommencer en changeant les noms			3:Menu"<<endl;
  	cin>>choixFin;
-
+ 	while(choixFin>3 || choixFin<1){
+ 		 cout<<"Ce numero n'est pas proposé. Choisis-en un proposé!"<<endl;
+ 		 cin>>choixFin;
+ 	}
  	//on met a jour demandeNom pour savoir si on demande les noms a la prochaine partie
  	if (choixFin==1){
  		demandeNom=0;
@@ -56,8 +65,8 @@ PartieADeux::PartieADeux(Parametres param):Partie(param){
  	if (choixFin!=3)
  		reinitialisePartie();
  	return choixFin;
- }
 
+}
   void PartieADeux::reinitialisePartie() {
  	//on remet tous les attributs a leur état de base
 	ligneRemplieMax=-1;
@@ -111,11 +120,11 @@ void PartieADeux::remplitGrille(){
 	cin>>colonne;
 	cout<<endl;
 	
-	//tant que la colonne choisie est remplie, on redemande au joueur de jouer
-	while(nbParColonne[colonne]==6){
+	//tant que la colonne choisie est remplie/pas valide, on redemande au joueur de jouer
+	while(nbParColonne[colonne]==6 || colonne> 6){
 			
-		majAffichage();
-		cout<<"choisis une colonne non remplie"<<endl;
+		//majAffichage();
+		cout<<"choisis une colonne non remplie et valide"<<endl;
 		cin>>colonne;
 	} 
 	
