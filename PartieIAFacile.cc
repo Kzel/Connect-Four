@@ -169,14 +169,10 @@ void PartieIAFacile::tourOrdi(){
 		}
 
 	}
-
-    if(VerifieLignes()==-1){
-        while(nbParColonne[colonne]!=6){
-
-            grille[nbParColonne[colonne]][colonne]=JoueurCourant;
-	        nbParColonne[colonne]++;
-        }
-    }
+	
+    grille[nbParColonne[colonne]][colonne]=JoueurCourant;
+	nbParColonne[colonne]++;
+	
     
 
 }
@@ -185,7 +181,8 @@ void PartieIAFacile::tourOrdi(){
  int PartieIAFacile::jeu(){
 
  	while(VerifieFin()==-1){
- 		remplitGrille();
+		remplitGrille();
+		tourOrdi();
  		majAttributs();
  		majAffichage();
 
