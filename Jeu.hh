@@ -8,6 +8,8 @@
 #include "Partie.hh"
 #include "PartieADeux.hh"
 #include "PartieAvecResume.hh"
+#include "PartieIAFacile.hh"
+#include "PartieIAMoyen.hh"
 
 class Jeu{
 public:

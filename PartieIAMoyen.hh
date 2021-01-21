@@ -14,8 +14,7 @@ public:
     int finPartie(int issue);
     void reinitialisePartie();
     void remplitGrille();
-    int verifieLigne();
-    int verifieColonne();
+    int VerifieFin();
     void tourOrdi();
     int jeu();
 

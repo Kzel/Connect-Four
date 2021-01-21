@@ -118,43 +118,27 @@ void PartieIAMoyen::remplitGrille(){
 	nbParColonne[colonne]++; //maj ligneRemplieMax
 
 }
-int PartieIAMoyen::verifieLigne(){
-    int ligneRemplieMax=getLigneRemplieMax();
-    int i,j;
-	for(i=0;i<ligneRemplieMax;i++){
-		PionsAlignes pions;
-		for(j=0;j<=6;j++){
-			pions.ajouterPion(grille[i][j]);
-		}
-		if(pions.estGagnant()!=-1)
-			return pions.estGagnant();
-	}
-    if (compteurTour==42){
+int PartieIAMoyen::VerifieFin(){
+	int retour=-1;
+	//on verifie les lignes
+	retour=VerifieLignes();
+	if(retour!=-1)
+		return retour;
+	
+	//on verifie les colonnes
+	retour=VerifieColonnes();
+	if(retour!=-1)
+		return retour;
+	//on verifie si les joueurs n'ont pas déposé tous leurs pions
+	if (compteurTour==42){
 		return 2;
 	}
-    return -1;
-}
 
-int PartieIAMoyen::verifieColonne(){
-    int i,j;
-    for(j=0;j<=6;j++){
-		if(!(nbParColonne[j]<4)){
-			PionsAlignes pions;
-			for(i=0;i<nbParColonne[j];i++){
-				pions.ajouterPion(grille[i][j]);
-			}
-			if(pions.estGagnant()!=-1)
-				return pions.estGagnant();
-		}
-	}
-    if (compteurTour==42){
-		return 2;
-	}
-    return -1;
+	return -1;
+ 
 }
 
 
- 	
 void PartieIAMoyen::tourOrdi(){
     int colonne=rand()%6;
     if (!(par.getAffichageSymboles())){
@@ -175,7 +159,7 @@ void PartieIAMoyen::tourOrdi(){
 
 	}
     
-    if(verifieLigne()==-1 || verifieLigne()==-1){
+    if(VerifieLignes()==-1 || VerifieColonnes()==-1){
         while(nbParColonne[colonne]!=6){
 
             grille[nbParColonne[colonne]][colonne]=JoueurCourant;
@@ -189,6 +173,7 @@ void PartieIAMoyen::tourOrdi(){
 
  	while(VerifieFin()==-1){
  		remplitGrille();
+		tourOrdi();
  		majAttributs();
  		majAffichage();
 
