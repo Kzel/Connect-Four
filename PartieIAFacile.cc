@@ -11,7 +11,7 @@ void PartieIAFacile::debutPartie(){
 		cout<<std::endl<<std::endl <<"Quel est le nom d'IA ?" <<endl;
 		cin>>tabJoueurs[1];  
  	}
- 	if(JoueurCourant==0){
+ 	if(!JoueurCourant==0){
  		cout<<endl;
  		cout<<"C'est " << tabJoueurs[0] << " qui commence"<<endl;
  	}
