@@ -14,7 +14,8 @@ Parametres::Parametres(){
 
 int Parametres::consulteParam(){
 	int numero;
-	cout<<"Parametre"<<endl;
+	cout<<"----------------------------------"<<endl;
+	cout<<"Parametres:"<<endl;
 	if(getAffichageSymboles()){
 		cout<<"1: Affichage les symboles :1/2"<<endl;
 	}else{
@@ -61,6 +62,7 @@ int Parametres::consulteParam(){
 	}else{
 		cout<<"6: Avec resume :Non"<<endl;
 	}
+	cout<<"7: Menu"<<endl;
 	cout<<"Tapez le numero du parametre que vous voulez changer"<<endl;
 	cin>>numero;
 	if(numero!=7){

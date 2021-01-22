@@ -101,6 +101,9 @@ using namespace std;
 
 // }
 TEST_CASE("calcul temps joueurs"){
+	//on pense dans ce testcase
+	//a verifier si le temps du joueur se remet a jour lorsqu'il
+	//choisit une mauvaise colonne
 	Parametres param;
 	PartieAvecResume p(param);
 	p.debutPartie();
@@ -124,3 +127,4 @@ TEST_CASE("egalite:meme nombre d'alignement de 3 pions+critereEgalite=pions"){
 
 //tester PionsAlignes et
 // tester differents cas de departagement d'égalité
+//tester Jeu.cc classe créée en fonction de decision Joueur
