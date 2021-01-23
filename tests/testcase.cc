@@ -11,7 +11,7 @@ using namespace std;
 
 
 
-// TEST_CASE("Partie: detection diagonale"){
+// TEST_CASE("1:Partie: detection diagonale"){
 // 	//on teste diagonales dans les 2 sens
 // 	//et pour les 2 joueurs
 // 	Parametres param;
@@ -23,7 +23,8 @@ using namespace std;
 // 	p.majAffichage();
 // 	cout<<endl;
 // 	cout<<"VerifieDiago:"<<p.VerifieDiago(0,0,5,5)<<endl;
-// 	cout<<"VerifieDiagoBH:"<<p.VerifieDiagoBH()<<endl;
+// 	REQUIRE(p.VerifieDiagoBH()==0);
+// 	REQUIRE(p.VerifieDiagoHB()==-1);
 // 	p(2,6)=1;
 // 	p(3,5)=1;
 // 	p(4,4)=1;
@@ -31,11 +32,11 @@ using namespace std;
 // 	p.majAffichage();
 // 	cout<<endl;
 // 	cout<<"VerifieDiago:"<<p.VerifieDiago(5,3,2,6)<<endl;
-// 	cout<<"VerifieDiagoBH:"<<p.VerifieDiagoHB()<<endl;
+// 	REQUIRE(p.VerifieDiagoHB()==1);
 // 	cout<<"------------------"<<endl;
 // }
 
-// TEST_CASE("maj ligneRemplieMax"){
+// TEST_CASE("2:maj ligneRemplieMax"){
 // 	Parametres param;
 // 	PartieADeux p(param);
 // 	for(int i=0;i<=20;i++){
@@ -50,7 +51,7 @@ using namespace std;
 
 
 
-// TEST_CASE("PionsAlignes compte3Pions"){
+// TEST_CASE("3: PionsAlignes compte3Pions"){
 // 	PionsAlignes p;
 // 	p.ajouterPion(0);
 // 	p.ajouterPion(0);
@@ -61,46 +62,50 @@ using namespace std;
 // 	p.ajouterPion(0);
 // 	p.ajouterPion(0);
 // 	p.afficheVecteur();
-// 	cout<<p.compte3Pions(0)<<endl;
-// 	cout<<p.compte3Pions(1)<<endl;
+// 	cout<<"Joueur0: "<<p.compte3Pions(0)<<endl;
+// 	cout<<"Joueur1: "<<p.compte3Pions(1)<<endl;
+// 	REQUIRE(p.compte3Pions(0)==2);
+// 	REQUIRE(p.compte3Pions(1)==0);
 // 	cout<<"------------------"<<endl;
 // }
 
-// TEST_CASE("PartieAvecResume comptageUnitaire"){
-// 	Parametres param;
-// 	PartieAvecResume p(param);
-// 	p.grilleTest();
-// 	p.majAffichage();
-// 	cout<<"ligne 0 pour j1:"<<p.comptageUnitaire(0,0,0,6,0)<<endl;
-// 	cout<<"colonne pr j2:"<<p.comptageUnitaire(0,5,2,5,1)<<endl;
-// 	cout<<"diago 2,1-0,3:"<<p.comptageUnitaire(2,1,0,3,1)<<endl;
-// 	cout<<"diago 0,3-2,5:"<<p.comptageUnitaire(0,3,2,5,1)<<endl;
-// 	cout<<"------------------"<<endl;
+TEST_CASE("4: PartieAvecResume comptageUnitaire"){
+	Parametres param;
+	PartieAvecResume p(param);
+	p.grilleTest();
+	p.majAffichage();
+	cout<<"ligne 0 pour j1:"<<p.comptageUnitaire(0,0,0,6,0)<<endl;
+	cout<<"colonne 5 pour j2:"<<p.comptageUnitaire(0,5,2,5,1)<<endl;
+	cout<<"j2 diago 2,1-0,3:"<<p.comptageUnitaire(2,1,0,3,1)<<endl;
+	cout<<"j2 diago 0,3-2,5:"<<p.comptageUnitaire(0,3,2,5,1)<<endl;
+	cout<<"------------------"<<endl;
 
-// }
-// TEST_CASE("comptage 3 pions alignes"){
-// 	Parametres param;
-// 	PartieAvecResume p(param);
-// 	p.grilleTest();
-// 	p.majAffichage();
-// 	p.comptage3Pions(0);
-// 	p.comptage3Pions(1);
-// 	cout<<"J1 pion :"<<p.getnb3Pions(0)<<endl;
-// 	cout<<"J2 pion :"<<p.getnb3Pions(1)<<endl;
-// 	cout<<"------------------"<<endl;
-// }
+}
+TEST_CASE("5: comptage 3 pions alignes"){
+	Parametres param;
+	PartieAvecResume p(param);
+	p.grilleTest();
+	p.majAffichage();
+	p.comptage3Pions(0);
+	p.comptage3Pions(1);
+	cout<<"J1 3 pions :"<<p.getnb3Pions(0)<<endl;
+	cout<<"J2 3 pions :"<<p.getnb3Pions(1)<<endl;
+	REQUIRE(p.getnb3Pions(0)==8);
+	REQUIRE(p.getnb3Pions(1)==4);
+	cout<<"------------------"<<endl;
+}
 
-// TEST_CASE("departage egalite sur pions"){
+TEST_CASE("6: departage egalite sur pions"){
 
-// 	Parametres param;
-// 	PartieAvecResume p(param);
-// 	p.grilleEgalite();
-// 	p.majAffichage();
-// 	REQUIRE(p.VerifieFin()==1);
-// 	cout<<"------------------"<<endl;
+	Parametres param;
+	PartieAvecResume p(param);
+	p.grilleEgalite();
+	p.majAffichage();
+	REQUIRE(p.VerifieFin()==1);
+	cout<<"------------------"<<endl;
 
-// }
-TEST_CASE("calcul temps joueurs"){
+}
+TEST_CASE("7 :calcul temps joueurs"){
 	//on pense dans ce testcase
 	//a verifier si le temps du joueur se remet a jour lorsqu'il
 	//choisit une mauvaise colonne
@@ -115,7 +120,7 @@ TEST_CASE("calcul temps joueurs"){
 	}
 }
 
-TEST_CASE("egalite:meme nombre d'alignement de 3 pions+critereEgalite=pions"){
+TEST_CASE("8: egalite:meme nombre d'alignement de 3 pions+critereEgalite=pions"){
 	Parametres param;
 	PartieAvecResume p(param);
 	p.grilleMemePions();

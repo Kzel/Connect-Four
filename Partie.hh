@@ -23,7 +23,6 @@ public:
 	int VerifieColonnes();
 	void grilleTest();
 	void grilleEgalite();
-	void grilleMemePions();
 	void majAffichage();
 	void majAffichageMorpion();
 	void majAffichageChiffres();

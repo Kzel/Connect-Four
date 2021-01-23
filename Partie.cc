@@ -216,7 +216,7 @@ int Partie::VerifieDiago(int l1,int c1,int l2,int c2){
 	PionsAlignes pions;
 	int i;
 	int j=c1;
-	//cas où c'est une diagonale haut gauche vers bas droit
+	//cas où c'est une diagonale bas gauche vers haut droit
 	if (l1<l2){
 		for (i=l1;i<=l2;i++){
 			pions.ajouterPion(grille[i][j]);
@@ -224,7 +224,7 @@ int Partie::VerifieDiago(int l1,int c1,int l2,int c2){
 		}
 	
 	}
-	//cas où c'est une diagonale bas gauche vers haut droit
+	//cas où c'est une diagonale haut gauche vers bas droit
 	else{
 		for (i=l1;i>=l2;i--){
 			pions.ajouterPion(grille[i][j]);
@@ -260,7 +260,7 @@ int Partie::VerifieDiagoBH(){
 
 }
 
-//verifie les diagonales possibles ayant une orientation bas gauche vers haut droite
+//verifie les diagonales possibles ayant une orientation haut gauche vers bas droite
 int Partie::VerifieDiagoHB(){
 	//on verifie chaque diagonale susceptible d'avoir 4 pions alignes
 	if (VerifieDiago(3,0,0,3)!=-1)
