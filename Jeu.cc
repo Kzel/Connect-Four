@@ -38,9 +38,8 @@ void Jeu::decisionMenu(int entree){
 				partie=new PartieIAMoyen(param);
 
 			}
-			else{
-				//partie=new PartieIAdifficile(param);
-
+			else if(param.getNivDifficulte()==3){
+				partie=new PartieIADifficile(param);
 			}
 			lancerPartie();
 			break;

@@ -1,10 +1,10 @@
-#include "PartieIAMoyen.hh"
+#include "PartieIADifficile.hh"
 
-PartieIAMoyen::PartieIAMoyen(Parametres param):Partie(param){
+PartieIADifficile::PartieIADifficile(Parametres param):Partie(param){
 
 
 }
-void PartieIAMoyen::debutPartie(){
+void PartieIADifficile::debutPartie(){
  	if (demandeNom){
  		cout	<< "Quel est le nom du premier joueur ?" << endl;
 		cin>>tabJoueurs[0];
@@ -20,7 +20,7 @@ void PartieIAMoyen::debutPartie(){
  	}
  }
  
-int PartieIAMoyen::finPartie(int issue){
+int PartieIADifficile::finPartie(int issue){
     int choixFin;
     cout<<"----------------------------------"<<endl;
     switch (issue){
@@ -56,7 +56,7 @@ int PartieIAMoyen::finPartie(int issue){
  	return choixFin;
 }
 
- void PartieIAMoyen::reinitialisePartie() {
+ void PartieIADifficile::reinitialisePartie() {
  	//on remet tous les attributs a leur état de base
 	ligneRemplieMax=-1;
 	compteurTour=0;
@@ -83,7 +83,7 @@ int PartieIAMoyen::finPartie(int issue){
 	}
 
  }
-void PartieIAMoyen::remplitGrille(){
+void PartieIADifficile::remplitGrille(){
 	int colonne;
 	cout<<"A ton tour. Tes jetons sont les:";
 	if (!(par.getAffichageSymboles())){
@@ -121,7 +121,7 @@ void PartieIAMoyen::remplitGrille(){
 
 }
  	
-int PartieIAMoyen::VerifieFin(){
+int PartieIADifficile::VerifieFin(){
     int retour=-1;
 	//on verifie les lignes
 	retour=VerifieLignes();
@@ -150,7 +150,7 @@ int PartieIAMoyen::VerifieFin(){
 
 }
 
-void PartieIAMoyen::tourOrdi(){
+void PartieIADifficile::tourOrdi(){
 	int colonne=rand()%6;
 	int i,j;
 	
@@ -161,7 +161,9 @@ void PartieIAMoyen::tourOrdi(){
 				for ( j=0; j<7; j++){
 					if(grille[i][j]=='X' && grille[i][j+1]=='X' && grille[i][j+2]=='X'){
 						colonne=j-1;
-					}	
+					}else if(grille[i][j]=='X' && grille[i+1][j]=='X' && grille[i+2][j]=='X'){
+						colonne=j;
+					}
 				}
 			}
 		}
@@ -171,7 +173,9 @@ void PartieIAMoyen::tourOrdi(){
 				for ( j=0; j<7; j++){
 					if(grille[i][j]=='O' && grille[i][j+1]=='O' && grille[i][j+2]=='O'){
 						colonne=j-1;
-					}	
+					}else if(grille[i][j]=='O' && grille[i+1][j]=='O' && grille[i+2][j]=='O'){
+						colonne=j;
+					}
 				}
 			}
 		}
@@ -183,7 +187,9 @@ void PartieIAMoyen::tourOrdi(){
 				for ( j=0; j<7; j++){
 					if(grille[i][j]=='1' && grille[i][j+1]=='1' && grille[i][j+2]=='1'){
 						colonne=j-1;
-					}	
+					}else if(grille[i][j]=='1' && grille[i+1][j]=='1' && grille[i+2][j]=='1'){
+						colonne=j;
+					}
 				}
 			}
 		}
@@ -193,7 +199,9 @@ void PartieIAMoyen::tourOrdi(){
 				for ( j=0; j<7; j++){
 					if(grille[i][j]=='2' && grille[i][j+1]=='2' && grille[i][j+2]=='2'){
 						colonne=j-1;
-					}	
+					}else if(grille[i][j]=='2' && grille[i+1][j]=='2' && grille[i+2][j]=='2'){
+						colonne=j;
+					}
 				}
 			}
 		}
@@ -212,7 +220,7 @@ void PartieIAMoyen::tourOrdi(){
 }
 
 
- int PartieIAMoyen::jeu(){
+ int PartieIADifficile::jeu(){
 
  	while(VerifieFin()==-1){
 		if(JoueurCourant){

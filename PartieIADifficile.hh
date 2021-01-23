@@ -3,9 +3,9 @@
 #include "Partie.hh"
 
 
-class PartieIAMoyen: public Partie{
+class PartieIADifficile: public Partie{
 public:
-	PartieIAMoyen(Parametres param);
+	PartieIADifficile(Parametres param);
     void debutPartie();
     int finPartie(int issue);
     void reinitialisePartie();

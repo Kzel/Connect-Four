@@ -74,8 +74,8 @@ int Parametres::consulteParam(){
 
 void Parametres::Changer(int num){
 	int x1,x2,x3,x4,x5,x6;
-	cout<<"Comment vous voulez changer ce parametre?";
-	cout<<"Tapez ce que vous voulez";
+	cout<<"Comment vous voulez changer ce parametre?"<<endl;
+	cout<<"Tapez ce que vous voulez"<<endl;
 	switch (num)
 	{
 	case 1:

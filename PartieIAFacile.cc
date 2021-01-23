@@ -154,25 +154,25 @@ void PartieIAFacile::tourOrdi(){
     int colonne=rand()%6;
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
-			cout<<"X"<<endl;
+			cout<<"jeton de IA est X"<<endl;
 		}
 		else{
-			cout<<"O"<<endl;
+			cout<<"jeton de IA est O"<<endl;
 		}
 	}
 	else{
 		if (!JoueurCourant){
-			cout<<"1"<<endl;
+			cout<<"jeton de IA est 1"<<endl;
 		}
 		else{
-			cout<<"2"<<endl;
+			cout<<"jeton de IA est 2"<<endl;
 		}
 
 	}
 	while(nbParColonne[colonne]==6){
 			
 		majAffichage();
-		cin>>colonne;
+	
 	} 
 	
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
