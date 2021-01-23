@@ -25,11 +25,11 @@ int PartieIADifficile::finPartie(int issue){
     cout<<"----------------------------------"<<endl;
     switch (issue){
  		case 0:
- 			cout<<"C'est dommage, Tu as perdue"<<endl;
+ 			cout<<"Felicitations ! Tu as gagne"<<endl;
  			break;
 
  		case 1:
- 			cout<<"Felicitations ! Tu as gagne "<<endl;
+ 			cout<<"C'est dommage, Tu as perdue"<<endl;
  			break;
 
  		case 2:
@@ -153,67 +153,121 @@ int PartieIADifficile::VerifieFin(){
 void PartieIADifficile::tourOrdi(){
 	int colonne=rand()%6;
 	int i,j;
-	
+	PionsAlignes pions;
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
 			cout<<"jeton de IA est X"<<endl;
-			for ( i=0; i<6; i++) {
-				for ( j=0; j<7; j++){
-					if(grille[i][j]=='X' && grille[i][j+1]=='X' && grille[i][j+2]=='X'){
-						colonne=j-1;
-					}else if(grille[i][j]=='X' && grille[i+1][j]=='X' && grille[i+2][j]=='X'){
-						colonne=j;
-					}
-				}
+			
+			for(i=0;i<ligneRemplieMax;i++){
+					
+					for(j=0;j<=6;j++){
+				pions.ajouterPion(grille[i][j]);
 			}
+			
+			}
+			if(pions.est3pions('X')!=-1){
+					colonne=j+1;
+				}
+			for(j=0;j<=6;j++){
+				if(!(nbParColonne[j]<4)){
+				
+					for(i=0;i<nbParColonne[j];i++){
+				pions.ajouterPion(grille[i][j]);
+			}
+				
+			  }
+			}
+			if(pions.est3pions('X')!=-1){
+					colonne=j;
+				}
 		}
 		else{
 			cout<<"jeton de IA est O"<<endl;
-			for ( i=0; i<6; i++) {
-				for ( j=0; j<7; j++){
-					if(grille[i][j]=='O' && grille[i][j+1]=='O' && grille[i][j+2]=='O'){
-						colonne=j-1;
-					}else if(grille[i][j]=='O' && grille[i+1][j]=='O' && grille[i+2][j]=='O'){
-						colonne=j;
-					}
+			for(i=0;i<ligneRemplieMax;i++){
+					
+					for(j=0;j<=6;j++){
+				pions.ajouterPion(grille[i][j]);
+			}
+			}
+			if(pions.est3pions('O')!=-1){
+					colonne=j+1;
 				}
 			}
-		}
+			for(j=0;j<=6;j++){
+				if(!(nbParColonne[j]<4)){
+					
+					for(i=0;i<nbParColonne[j];i++){
+				pions.ajouterPion(grille[i][j]);
+			}
+				
+			  }
+			}
+			if(pions.est3pions('O')!=-1){
+					colonne=j;
+				}
+		
 	}
 	else{
 		if (!JoueurCourant){
 			cout<<"jeton de IA est 1"<<endl;
-			for ( i=0; i<6; i++) {
-				for ( j=0; j<7; j++){
-					if(grille[i][j]=='1' && grille[i][j+1]=='1' && grille[i][j+2]=='1'){
-						colonne=j-1;
-					}else if(grille[i][j]=='1' && grille[i+1][j]=='1' && grille[i+2][j]=='1'){
-						colonne=j;
-					}
-				}
+			for(i=0;i<ligneRemplieMax;i++){
+					
+					for(j=0;j<=6;j++){
+				pions.ajouterPion(grille[i][j]);
 			}
+			
+			}
+			if(pions.est3pions('1')!=-1){
+					colonne=j+1;
+				}
+			for(j=0;j<=6;j++){
+				if(!(nbParColonne[j]<4)){
+					
+					for(i=0;i<nbParColonne[j];i++){
+				pions.ajouterPion(grille[i][j]);
+			}
+				
+			  }
+			}
+			if(pions.est3pions('1')!=-1){
+					colonne=j;
+				}
 		}
 		else{
 			cout<<"jeton de IA est 2"<<endl;
-			for ( i=0; i<6; i++) {
-				for ( j=0; j<7; j++){
-					if(grille[i][j]=='2' && grille[i][j+1]=='2' && grille[i][j+2]=='2'){
-						colonne=j-1;
-					}else if(grille[i][j]=='2' && grille[i+1][j]=='2' && grille[i+2][j]=='2'){
-						colonne=j;
+			for(i=0;i<ligneRemplieMax;i++){
+					
+					for(j=0;j<=6;j++){
+				pions.ajouterPion(grille[i][j]);
+			}
+			
+			}
+			
+			if(pions.est3pions('2')!=-1){
+					colonne=j+1;
+			}
+
+			for(j=0;j<=6;j++){
+				if(!(nbParColonne[j]<4)){
+					
+					for(i=0;i<nbParColonne[j];i++){
+						pions.ajouterPion(grille[i][j]);
 					}
+				}	
+			  }
+
+			  if(pions.est3pions('2')!=-1){
+					colonne=j;
 				}
 			}
-		}
 
 	}
 	
 	while(nbParColonne[colonne]==6){
-			
 		majAffichage();
-	
 	} 
 	if(colonne<0){colonne=0;}
+	if(colonne>6){colonne=6;}
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++; 
 
@@ -224,9 +278,9 @@ void PartieIADifficile::tourOrdi(){
 
  	while(VerifieFin()==-1){
 		if(JoueurCourant){
-			remplitGrille();
+			tourOrdi();	
 		}else{
-			tourOrdi();
+			remplitGrille();
 		}
  		majAttributs();
  		majAffichage();

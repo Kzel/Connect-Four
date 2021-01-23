@@ -6,6 +6,28 @@ PionsAlignes::PionsAlignes(){
 
 }
 
+int PionsAlignes::est3pions(int i){
+	//taille du vecteur doit être supérieure a 2
+	int compteur=0;
+	int cpt2=0;
+	vector<int>::iterator iter;
+	for (iter=pions.begin();iter!=pions.end();iter++){
+		if (*iter!=i){
+			cpt2=0;
+		}
+		else{
+			cpt2++;
+		}
+		//on a atteint 3 pions identiques successifs
+		if (cpt2==3){
+			compteur++;
+			cpt2=0;
+			return 1;
+		}
+	}
+	return -1;
+}
+
 int PionsAlignes::estGagnant(){
 	//taille du vecteur doit être supérieure a 2
 	int nb=1;

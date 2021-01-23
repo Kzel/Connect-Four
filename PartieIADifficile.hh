@@ -1,6 +1,7 @@
 #pragma once
 #include "Parametres.hh"
 #include "Partie.hh"
+#include "PionsAlignes.hh"
 
 
 class PartieIADifficile: public Partie{
