@@ -15,9 +15,13 @@ private:
 
 public:
 	PartieAvecResume(Parametres param);
+	//getters
+	int getnb3Pions(int joueur){return nb3Pions[joueur];};
+	double getTpsJoueur(int joueur){return tpsJoueur[joueur];};
+
+
 	void comptage3Pions(int joueur);
 	int comptageUnitaire(int l1,int c1,int l2,int c2,int joueur);
-	double getTpsJoueur(int joueur){return tpsJoueur[joueur];};
 	void remplitGrille();
 	void grilleMemePions();
 	void affichageTour();
@@ -26,7 +30,6 @@ public:
 	int departageTemps();
 	int departagePions();
 	void afficheResume();
-	int getnb3Pions(int joueur){return nb3Pions[joueur];};
 	int finPartie(int issue);
 
 };

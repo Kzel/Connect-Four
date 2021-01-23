@@ -31,8 +31,8 @@ int PionsAlignes::estGagnant(){
 
 }
 
-//compte combien on trouve de succession 
-// de 3 pions identiques dans le vector de pions
+//compte combien on trouve de fois 
+//3 pions alignes identiques dans le vector de pions
 // pour un type de pion donné par i
 int PionsAlignes::compte3Pions(int i){
 	int compteur=0;
