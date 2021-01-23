@@ -160,11 +160,9 @@ void PartieIAMoyen::tourOrdi(){
 	}
     
     if(VerifieLignes()==-1 || VerifieColonnes()==-1){
-        while(nbParColonne[colonne]!=6){
 
             grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	        nbParColonne[colonne]++;
-        }
     }
 }
 

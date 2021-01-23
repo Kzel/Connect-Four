@@ -5,31 +5,31 @@ PartieIAFacile::PartieIAFacile(Parametres param):Partie(param){
 
 }
 void PartieIAFacile::debutPartie(){
-    
-    if(demandeNom){
-
-        cout<< "Quel est le nom du joueur ?" << endl;
-        cin>>joueurnom;
-    }
-    if(JoueurCourant==0){
-        cout<<endl;
- 		cout<<"C'est " << joueurnom << " qui commence"<<endl;
-    }else{
-
-        cout<<"C'est IA qui commence"<<endl;
-    }
-}
+ 	if (demandeNom){
+ 		cout	<< "Quel est le nom du premier joueur ?" << endl;
+		cin>>tabJoueurs[0];
+		cout<<std::endl<<std::endl <<"Quel est le nom d'IA ?" <<endl;
+		cin>>tabJoueurs[1];  
+ 	}
+ 	if(!JoueurCourant==0){
+ 		cout<<endl;
+ 		cout<<"C'est " << tabJoueurs[0] << " qui commence"<<endl;
+ 	}
+ 	else{
+ 		cout<<"C'est " << tabJoueurs[1] << " qui commence"<<endl;
+ 	}
+ }
  
 int PartieIAFacile::finPartie(int issue){
     int choixFin;
     cout<<"----------------------------------"<<endl;
     switch (issue){
  		case 0:
- 			cout<<"Felicitations ! Tu as gagne "<<endl;
+ 			cout<<"C'est dommage, Tu as perdue"<<endl;
  			break;
 
  		case 1:
- 			cout<<"C'est dommage, Tu as perdue "<<endl;
+ 			cout<<"Felicitations ! Tu as gagne "<<endl;
  			break;
 
  		case 2:
@@ -61,7 +61,7 @@ int PartieIAFacile::finPartie(int issue){
 	ligneRemplieMax=-1;
 	compteurTour=0;
 	srand(time(NULL));
-	JoueurCourant=rand()%2;
+	JoueurCourant=1;
 	map<int,int>::iterator it;
 	//on remet le nombre de jetons par colonne à 0 partout
 	for (it = nbParColonne.begin(); it  !=  nbParColonne.end(); ++it){
@@ -169,6 +169,11 @@ void PartieIAFacile::tourOrdi(){
 		}
 
 	}
+	while(nbParColonne[colonne]==6){
+			
+		majAffichage();
+		cin>>colonne;
+	} 
 	
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++;
@@ -181,8 +186,11 @@ void PartieIAFacile::tourOrdi(){
  int PartieIAFacile::jeu(){
 
  	while(VerifieFin()==-1){
-		remplitGrille();
-		tourOrdi();
+		if(JoueurCourant){
+			remplitGrille();
+		}else{
+			tourOrdi();
+		}
  		majAttributs();
  		majAffichage();
 
