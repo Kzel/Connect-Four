@@ -157,7 +157,7 @@ void PartieIADifficile::tourOrdi(){
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
 			cout<<"jeton de IA est X"<<endl;
-			
+			//verifie 3pions alignes horizontalemnt
 			for(i=0;i<ligneRemplieMax;i++){
 					
 					for(j=0;j<=6;j++){
@@ -168,6 +168,7 @@ void PartieIADifficile::tourOrdi(){
 			if(pions.est3pions('X')!=-1){
 					colonne=j+1;
 				}
+			//verifie 3pions alignes verticalement
 			for(j=0;j<=6;j++){
 				if(!(nbParColonne[j]<4)){
 				
@@ -183,6 +184,7 @@ void PartieIADifficile::tourOrdi(){
 		}
 		else{
 			cout<<"jeton de IA est O"<<endl;
+			//verifie 3pions alignes horizontalemnt
 			for(i=0;i<ligneRemplieMax;i++){
 					
 					for(j=0;j<=6;j++){
@@ -193,6 +195,7 @@ void PartieIADifficile::tourOrdi(){
 					colonne=j+1;
 				}
 			}
+			//verifie 3pions alignes verticalement
 			for(j=0;j<=6;j++){
 				if(!(nbParColonne[j]<4)){
 					
@@ -210,6 +213,7 @@ void PartieIADifficile::tourOrdi(){
 	else{
 		if (!JoueurCourant){
 			cout<<"jeton de IA est 1"<<endl;
+			//verifie 3pions alignes horizontalemnt
 			for(i=0;i<ligneRemplieMax;i++){
 					
 					for(j=0;j<=6;j++){
@@ -220,6 +224,7 @@ void PartieIADifficile::tourOrdi(){
 			if(pions.est3pions('1')!=-1){
 					colonne=j+1;
 				}
+			//verifie 3pions alignes verticalemnt
 			for(j=0;j<=6;j++){
 				if(!(nbParColonne[j]<4)){
 					
@@ -235,6 +240,7 @@ void PartieIADifficile::tourOrdi(){
 		}
 		else{
 			cout<<"jeton de IA est 2"<<endl;
+			//verifie 3pions alignes horizontalemnt
 			for(i=0;i<ligneRemplieMax;i++){
 					
 					for(j=0;j<=6;j++){
@@ -246,7 +252,7 @@ void PartieIADifficile::tourOrdi(){
 			if(pions.est3pions('2')!=-1){
 					colonne=j+1;
 			}
-
+			//verifie 3pions alignes verticalemnt
 			for(j=0;j<=6;j++){
 				if(!(nbParColonne[j]<4)){
 					
@@ -264,12 +270,13 @@ void PartieIADifficile::tourOrdi(){
 	}
 	
 	while(nbParColonne[colonne]==6){
-		majAffichage();
+		colonne=rand()%6;
 	} 
 	if(colonne<0){colonne=0;}
 	if(colonne>6){colonne=6;}
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
-	nbParColonne[colonne]++; 
+	nbParColonne[colonne]++;
+	majAffichage(); 
 
 }
 

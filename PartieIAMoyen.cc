@@ -20,6 +20,9 @@ void PartieIAMoyen::debutPartie(){
  	}
  }
  
+ //selon l'issue, on envoie le resultat au joueur
+ //on rdemande au joueur si il veut recommencer ou retourner au menu
+ //et on retourne sa réponse
 int PartieIAMoyen::finPartie(int issue){
     int choixFin;
     cout<<"----------------------------------"<<endl;
@@ -158,8 +161,9 @@ void PartieIAMoyen::tourOrdi(){
 		if (!JoueurCourant){
 			cout<<"jeton de IA est X"<<endl;
 			for ( i=0; i<6; i++) {
-				for ( j=0; j<7; j++){
+				for ( j=0; j<ligneRemplieMax; j++){
 					if(grille[i][j]=='X' && grille[i][j+1]=='X' && grille[i][j+2]=='X'){
+						 //verifie 3 pions alignes horizontalement
 						colonne=j-1;
 					}	
 				}
@@ -168,8 +172,9 @@ void PartieIAMoyen::tourOrdi(){
 		else{
 			cout<<"jeton de IA est O"<<endl;
 			for ( i=0; i<6; i++) {
-				for ( j=0; j<7; j++){
+				for ( j=0; j<ligneRemplieMax; j++){
 					if(grille[i][j]=='O' && grille[i][j+1]=='O' && grille[i][j+2]=='O'){
+						//verifie 3 pions alignes horizontalement
 						colonne=j-1;
 					}	
 				}
@@ -180,8 +185,10 @@ void PartieIAMoyen::tourOrdi(){
 		if (!JoueurCourant){
 			cout<<"jeton de IA est 1"<<endl;
 			for ( i=0; i<6; i++) {
-				for ( j=0; j<7; j++){
+				for ( j=0; j<ligneRemplieMax; j++){
 					if(grille[i][j]=='1' && grille[i][j+1]=='1' && grille[i][j+2]=='1'){
+
+					//verifie 3 pions alignes horizontalement
 						colonne=j-1;
 					}	
 				}
@@ -190,7 +197,8 @@ void PartieIAMoyen::tourOrdi(){
 		else{
 			cout<<"jeton de IA est 2"<<endl;
 			for ( i=0; i<6; i++) {
-				for ( j=0; j<7; j++){
+				for ( j=0; j<ligneRemplieMax; j++){
+					//verifie 3 pions alignes horizontalement
 					if(grille[i][j]=='2' && grille[i][j+1]=='2' && grille[i][j+2]=='2'){
 						colonne=j-1;
 					}	
@@ -201,13 +209,13 @@ void PartieIAMoyen::tourOrdi(){
 	}
 	
 	while(nbParColonne[colonne]==6){
-			
-		majAffichage();
-	
+		colonne=rand()%6; //reprend une colonne non remplie
 	} 
+
 	if(colonne<0){colonne=0;}
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++; 
+	majAffichage();
 
 }
 

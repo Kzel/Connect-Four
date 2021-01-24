@@ -20,6 +20,9 @@ void PartieIAFacile::debutPartie(){
  	}
  }
  
+ //selon l'issue, on envoie le resultat au joueur
+ //on rdemande au joueur si il veut recommencer ou retourner au menu
+ //et on retourne sa réponse
 int PartieIAFacile::finPartie(int issue){
     int choixFin;
     cout<<"----------------------------------"<<endl;
@@ -151,8 +154,9 @@ int PartieIAFacile::VerifieFin(){
 }
 
 void PartieIAFacile::tourOrdi(){
-    int colonne=rand()%6;
+    int colonne=rand()%6; //choisir une colonne aleatoirement entre 0 et 6
     if (!(par.getAffichageSymboles())){
+		//identifier le IA est quelle jeton
 		if (!JoueurCourant){
 			cout<<"jeton de IA est X"<<endl;
 		}
@@ -170,15 +174,14 @@ void PartieIAFacile::tourOrdi(){
 
 	}
 	while(nbParColonne[colonne]==6){
-			
-		majAffichage();
-	
+		
+		colonne=rand()%6; //reprendre une colonne non remplie
+		
 	} 
 	
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++;
-	
-    
+	majAffichage();  
 
 }
 
