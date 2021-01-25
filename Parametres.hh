@@ -14,12 +14,12 @@ public:
 	void affdiff();
 	void affsansegal();
 	void affresume();
-	void changeaffsym(int x1);
-	void changeaffind(int x2);
-	void changeaffrap(int x3);
-	void changediff(int x4);
-	void changeegal(int x5);
-	void changeresum(int x6);
+	void changeaffsym();
+	void changeaffind();
+	void changeaffrap();
+	void changediff();
+	void changeegal();
+	void changeresum();
 	//getters
 	int getAvecResume(){return avecResume;};
 	int getNivDifficulte(){return nivDifficulte;};

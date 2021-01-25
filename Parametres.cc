@@ -99,8 +99,9 @@ int Parametres::consulteParam(){
 	return numero;
 }
 
-void Parametres::changeaffsym(int x1){
-	cout<<"0: Affichage des symboles :O/X "<<endl;
+void Parametres::changeaffsym(){
+		int x1;
+		cout<<"0: Affichage des symboles :O/X "<<endl;
 		cout<<"1: Affichage des symboles :1/2 "<<endl;
 		cin>>x1;
 		if(cin){
@@ -110,7 +111,8 @@ void Parametres::changeaffsym(int x1){
 		}
 }
 
-void Parametres::changeaffind(int x2){
+void Parametres::changeaffind(){
+		int x2;
 		cout<<"0: Ne pas afficher pas d'index"<<endl;
 		cout<<"1: Afficher les indexs"<<endl;
 		cin>>x2;
@@ -121,7 +123,8 @@ void Parametres::changeaffind(int x2){
 		}
 }
 
-void Parametres::changeaffrap(int x3){
+void Parametres::changeaffrap(){
+		int x3;
 		cout<<"0: rapidite"<<endl;
 		cout<<"1: 3 pions alignes"<<endl;
 		cin>>x3;
@@ -132,7 +135,8 @@ void Parametres::changeaffrap(int x3){
 		}
 }
 
-void Parametres::changediff(int x4){
+void Parametres::changediff(){
+		int x4;
 		cout<<"1: Le niveau facile"<<endl;
 		cout<<"2: Le niveau moyen"<<endl;
 		cout<<"3: Le niveau difficile"<<endl;
@@ -144,7 +148,8 @@ void Parametres::changediff(int x4){
 		}
 }
 
-void Parametres::changeegal(int x5){
+void Parametres::changeegal(){
+		int x5;
 		cout<<"0: Avec Egalite"<<endl;
 		cout<<"1: Sans Egalite"<<endl;
 		cin>>x5;
@@ -155,7 +160,8 @@ void Parametres::changeegal(int x5){
 		}
 }
 
-void Parametres::changeresum(int x6){
+void Parametres::changeresum(){
+		int x6;
 		cout<<"0: Sans resume"<<endl;
 		cout<<"1: Avec resume"<<endl;
 		cin>>x6;
@@ -168,33 +174,33 @@ void Parametres::changeresum(int x6){
 
 
 void Parametres::Changer(int num){
-	int x1=0,x2=0,x3=0,x4=0,x5=0,x6=0;
+	
 	cout<<"Comment vous voulez changer ce parametre?"<<endl;
 	cout<<"Tapez ce que vous voulez"<<endl;
 	switch (num)
 	{
 	case 1:
-		changeaffsym(x1);
+		changeaffsym();
 		break;
 
 	case 2:
-		changeaffind(x2);
+		changeaffind();
 		break;
 
 	case 3:
-		changeaffrap(x3);
+		changeaffrap();
 		break;
 
 	case 4:
-		changediff(x4);
+		changediff();
 		break;
 
 	case 5:
-		changeegal(x5);
+		changeegal();
 		break;
 
 	case 6:
-		changeresum(x6);
+		changeresum();
 		break;
 
 	default:
