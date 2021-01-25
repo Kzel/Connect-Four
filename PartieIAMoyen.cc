@@ -150,7 +150,7 @@ int PartieIAMoyen::VerifieFin(){
 	return -1;
 
 }
-void PartieIAMoyen::veriligne(int colonne,int sym){
+int PartieIAMoyen::veriligne(int colonne,int sym){
 	for (int i=0; i<6; i++) {
 				for ( int j=0; j<ligneRemplieMax; j++){
 					if(grille[i][j]==sym && grille[i][j+1]==sym && grille[i][j+2]==sym){
@@ -159,6 +159,7 @@ void PartieIAMoyen::veriligne(int colonne,int sym){
 					}	
 				}
 		}
+	return colonne;
 }
 
 void PartieIAMoyen::tourOrdi(){
@@ -167,21 +168,21 @@ void PartieIAMoyen::tourOrdi(){
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
 			cout<<"Les jetons de IA sont X"<<endl;
-			veriligne(colonne,'X');
+			colonne=veriligne(colonne,'O');
 			
 		}
 		else{
 			cout<<"Les jetons de IA sont O"<<endl;
-			veriligne(colonne,'O');
+			colonne=veriligne(colonne,'X');
 		}
 	}else{
 		if (!JoueurCourant){
 			cout<<"Les jetons de IA sont 1"<<endl;
-			veriligne(colonne,'1');
+			colonne=veriligne(colonne,'2');
 		}
 		else{
 			cout<<"Les jetons de IA sont 2"<<endl;
-			veriligne(colonne,'2');
+			colonne=veriligne(colonne,'1');
 		}
 	}
 	
