@@ -14,7 +14,7 @@ void PartieIAMoyen::debutPartie(){
  		cout<<"C'est " << nomjoueur << " qui commence"<<endl;
  	}
  	else{
- 		cout<<"C'est IA qui commence"<<endl;
+ 		cout<<"C'est l'IA qui commence"<<endl;
  	}
  }
  
@@ -26,7 +26,7 @@ int PartieIAMoyen::finPartie(int issue){
     cout<<"----------------------------------"<<endl;
     switch (issue){
  		case 0:
- 			cout<<"C'est dommage, Tu as perdue"<<endl;
+ 			cout<<"C'est dommage, Tu as perdu(e)"<<endl;
  			break;
 
  		case 1:
@@ -185,7 +185,7 @@ void PartieIAMoyen::tourOrdi(){
 		}
 	}
 	
-	
+	cout<<"En attente de l'IA..."<<endl;
 	while(nbParColonne[colonne]==6){
 		colonne=rand()%6; //reprend une colonne non remplie
 	} 
@@ -193,7 +193,6 @@ void PartieIAMoyen::tourOrdi(){
 	if(colonne<0){colonne=0;}
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++; 
-	majAffichage();
 
 }
 

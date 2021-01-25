@@ -14,18 +14,18 @@ Parametres::Parametres(){
 void Parametres::affsymbole(){
 	
 	if(getAffichageSymboles()){
-		cout<<"1: Affichage les symboles :1/2"<<endl;
+		cout<<"1: Affichage des symboles :1/2"<<endl;
 	}else{
-		cout<<"1: Affichage les symboles :O/X"<<endl;
+		cout<<"1: Affichage des symboles :O/X"<<endl;
 	}
 }
 
 void Parametres::affindex(){
 
 	if(getAffichageIndex()){
-		cout<<"2: Affichage les indexs :Oui"<<endl;
+		cout<<"2: Affichage des indexs :Oui"<<endl;
 	}else{
-		cout<<"2: Affichage les indexs :Non"<<endl;
+		cout<<"2: Affichage des indexs :Non"<<endl;
 	}
 
 }
@@ -93,8 +93,14 @@ int Parametres::consulteParam(){
 	affsansegal();
 	affresume();
 	cout<<"7: Menu"<<endl;
-	cout<<"Taper le numero du parametre que tu veux changer"<<endl;
+	cout<<"Tapez le numero que vous voulez"<<endl;
 	cin>>numero;
+	//gérer les bugs
+	while(numero<=0 || numero>7){
+		cout<<"Tapez un numero entre 1 et 7"<<endl;
+		cin>>numero;
+	}
+	cout<<endl;
 	if(numero!=7){Changer(numero);}
 	return numero;
 }
@@ -113,7 +119,7 @@ void Parametres::changeaffsym(){
 
 void Parametres::changeaffind(){
 		int x2;
-		cout<<"0: Ne pas afficher pas d'index"<<endl;
+		cout<<"0: Ne pas afficher les indexs"<<endl;
 		cout<<"1: Afficher les indexs"<<endl;
 		cin>>x2;
 		if(cin){
@@ -126,7 +132,7 @@ void Parametres::changeaffind(){
 void Parametres::changeaffrap(){
 		int x3;
 		cout<<"0: rapidite"<<endl;
-		cout<<"1: 3 pions alignes"<<endl;
+		cout<<"1: Rangées de 3 pions"<<endl;
 		cin>>x3;
 		if(cin){
 			setCritereEgalite(x3);
@@ -175,8 +181,8 @@ void Parametres::changeresum(){
 
 void Parametres::Changer(int num){
 	
-	cout<<"Comment tu veux changer ce parametre?"<<endl;
-	cout<<"Tapez ce que tu veux"<<endl;
+	cout<<"Comment vous voulez changer ce parametre?"<<endl;
+	cout<<"Tapez ce que vous voulez"<<endl;
 	switch (num)
 	{
 	case 1:
