@@ -166,21 +166,21 @@ void PartieIAMoyen::tourOrdi(){
 	
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
-			cout<<"jeton de IA est X"<<endl;
+			cout<<"Les jetons de IA sont X"<<endl;
 			veriligne(colonne,'X');
 			
 		}
 		else{
-			cout<<"jeton de IA est O"<<endl;
+			cout<<"Les jetons de IA sont O"<<endl;
 			veriligne(colonne,'O');
 		}
 	}else{
 		if (!JoueurCourant){
-			cout<<"jeton de IA est 1"<<endl;
+			cout<<"Les jetons de IA sont 1"<<endl;
 			veriligne(colonne,'1');
 		}
 		else{
-			cout<<"jeton de IA est 2"<<endl;
+			cout<<"Les jetons de IA sont 2"<<endl;
 			veriligne(colonne,'2');
 		}
 	}
