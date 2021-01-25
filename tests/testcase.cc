@@ -130,7 +130,7 @@ TEST_CASE("8: egalite:meme nombre d'alignement de 3 pions+critereEgalite=pions")
 	REQUIRE(p.VerifieFin()==0);
 }
 
-TEST_CASE("9: changment des parametres"){
+TEST_CASE("9: changement des parametres"){
 
 	Parametres param;
 	cout<<param.consulteParam()<<endl;
@@ -156,6 +156,3 @@ TEST_CASE("9: changment des parametres"){
 	}	
 
 }
-//tester PionsAlignes et
-// tester differents cas de departagement d'égalité
-//tester Jeu.cc classe créée en fonction de decision Joueur
