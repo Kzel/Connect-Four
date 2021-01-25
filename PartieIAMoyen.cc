@@ -14,7 +14,7 @@ void PartieIAMoyen::debutPartie(){
  		cout<<"C'est " << nomjoueur << " qui commence"<<endl;
  	}
  	else{
- 		cout<<"C'est IA qui commence"<<endl;
+ 		cout<<"C'est l'IA qui commence"<<endl;
  	}
  }
  
@@ -26,7 +26,7 @@ int PartieIAMoyen::finPartie(int issue){
     cout<<"----------------------------------"<<endl;
     switch (issue){
  		case 0:
- 			cout<<"C'est dommage, Tu as perdue"<<endl;
+ 			cout<<"C'est dommage, Tu as perdu(e)"<<endl;
  			break;
 
  		case 1:
@@ -150,7 +150,7 @@ int PartieIAMoyen::VerifieFin(){
 	return -1;
 
 }
-int PartieIAMoyen::veriligne(int colonne,int sym){
+void PartieIAMoyen::veriligne(int colonne,int sym){
 	for (int i=0; i<6; i++) {
 				for ( int j=0; j<ligneRemplieMax; j++){
 					if(grille[i][j]==sym && grille[i][j+1]==sym && grille[i][j+2]==sym){
@@ -159,7 +159,6 @@ int PartieIAMoyen::veriligne(int colonne,int sym){
 					}	
 				}
 		}
-	return colonne;
 }
 
 void PartieIAMoyen::tourOrdi(){
@@ -167,26 +166,26 @@ void PartieIAMoyen::tourOrdi(){
 	
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
-			cout<<"jeton de IA est X"<<endl;
-			colonne=veriligne(colonne,'O');
+			cout<<"Les jetons de IA sont X"<<endl;
+			veriligne(colonne,'X');
 			
 		}
 		else{
-			cout<<"jeton de IA est O"<<endl;
-			colonne=veriligne(colonne,'X');
+			cout<<"Les jetons de IA sont O"<<endl;
+			veriligne(colonne,'O');
 		}
 	}else{
 		if (!JoueurCourant){
-			cout<<"jeton de IA est 1"<<endl;
-			colonne=veriligne(colonne,'2');
+			cout<<"Les jetons de IA sont 1"<<endl;
+			veriligne(colonne,'1');
 		}
 		else{
-			cout<<"jeton de IA est 2"<<endl;
-			colonne=veriligne(colonne,'1');
+			cout<<"Les jetons de IA sont 2"<<endl;
+			veriligne(colonne,'2');
 		}
 	}
 	
-	
+	cout<<"En attente de l'IA..."<<endl;
 	while(nbParColonne[colonne]==6){
 		colonne=rand()%6; //reprend une colonne non remplie
 	} 
@@ -194,7 +193,6 @@ void PartieIAMoyen::tourOrdi(){
 	if(colonne<0){colonne=0;}
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++; 
-	majAffichage();
 
 }
 

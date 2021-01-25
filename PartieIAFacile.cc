@@ -14,7 +14,7 @@ void PartieIAFacile::debutPartie(){
  		cout<<"C'est" <<nomjoueur << "qui commence"<<endl;
  	}
  	else{
- 		cout<<"C'est IA qui commence"<<endl;
+ 		cout<<"C'est l'IA qui commence"<<endl;
  	}
  }
  
@@ -26,7 +26,7 @@ int PartieIAFacile::finPartie(int issue){
     cout<<"----------------------------------"<<endl;
     switch (issue){
  		case 0:
- 			cout<<"C'est dommage, Tu as perdue"<<endl;
+ 			cout<<"C'est dommage, Tu as perdu(e)"<<endl;
  			break;
 
  		case 1:
@@ -153,21 +153,23 @@ void PartieIAFacile::tourOrdi(){
     if (!(par.getAffichageSymboles())){
 		//identifier le IA est quelle jeton
 		if (!JoueurCourant){
-			cout<<"jeton de IA est X"<<endl;
+			cout<<"Les jetons de IA sont X"<<endl;
 		}
 		else{
-			cout<<"jeton de IA est O"<<endl;
+			cout<<"Les jetons de IA sont O"<<endl;
 		}
 	}
 	else{
 		if (!JoueurCourant){
-			cout<<"jeton de IA est 1"<<endl;
+			cout<<"Les jetons de IA sont 1"<<endl;
 		}
 		else{
-			cout<<"jeton de IA est 2"<<endl;
+			cout<<"Les jetons de IA sont 2"<<endl;
 		}
 
 	}
+
+	cout<<"En attente de l'IA..."<<endl;
 	while(nbParColonne[colonne]==6){
 		
 		colonne=rand()%6; //reprendre une colonne non remplie
@@ -176,7 +178,7 @@ void PartieIAFacile::tourOrdi(){
 	
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++;
-	majAffichage();  
+
 
 }
 

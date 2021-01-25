@@ -14,7 +14,7 @@ void PartieIADifficile::debutPartie(){
  		cout<<"C'est " << nomjoueur << " qui commence"<<endl;
  	}
  	else{
- 		cout<<"C'est IA qui commence"<<endl;
+ 		cout<<"C'est l'IA qui commence"<<endl;
  	}
  }
  
@@ -27,7 +27,7 @@ int PartieIADifficile::finPartie(int issue){
  			break;
 
  		case 1:
- 			cout<<"C'est dommage, Tu as perdue"<<endl;
+ 			cout<<"C'est dommage, Tu as perdu(e)"<<endl;
  			break;
 
  		case 2:
@@ -147,7 +147,7 @@ int PartieIADifficile::VerifieFin(){
 	return -1;
 
 }
-int PartieIADifficile::verifi(int colonne,int sym){
+void PartieIADifficile::verifi(int colonne,int sym){
 	PionsAlignes pions;
 	int i,j;
 	//verifie 3pions alignes horizontalemnt
@@ -159,7 +159,7 @@ int PartieIADifficile::verifi(int colonne,int sym){
 			
 			}
 			if(pions.est3pions(sym)!=-1){
-					colonne=j-1;
+					colonne=j+1;
 			}
 
 			//verifie 3pions alignes verticalement
@@ -174,30 +174,31 @@ int PartieIADifficile::verifi(int colonne,int sym){
 			if(pions.est3pions(sym)!=-1){
 					colonne=j;
 			}
-		return colonne;
 }
 void PartieIADifficile::tourOrdi(){
 	int colonne=rand()%6;
 
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
-			cout<<"jeton de IA est X"<<endl;
-			colonne=verifi(colonne,'O');	
+			cout<<"Les jetons de l'IA sont X"<<endl;
+			verifi(colonne,'X');
 			
 		}
 		else{
-			cout<<"jeton de IA est O"<<endl;
-			colonne=verifi(colonne,'X');
+			cout<<"Les jetons de l'IA sont est O"<<endl;
+			verifi(colonne,'O');
 		}
 	}else{
 		if (!JoueurCourant){
-			cout<<"jeton de IA est 1"<<endl;
-			colonne=verifi(colonne,'2');
+			cout<<"Les jetons de l'IA sont 1"<<endl;
+			verifi(colonne,'1');
 		}else{
-			cout<<"jeton de IA est 2"<<endl;
-			colonne=verifi(colonne,'1');
+			cout<<"Les jetons de l'IA sont 2"<<endl;
+			
+			verifi(colonne,'2');
 			}
-		}
+	}
+	cout<<"En attente de l'IA..."<<endl;
 	
 	
 	while(nbParColonne[colonne]==6){
@@ -207,7 +208,6 @@ void PartieIADifficile::tourOrdi(){
 	if(colonne>6){colonne=6;}
     grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++;
-	majAffichage(); 
 
 }
 
