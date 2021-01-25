@@ -4,6 +4,8 @@
 #include "Partie.hh"
 #include "PartieADeux.hh"
 #include "PartieAvecResume.hh"
+#include "PartieIAMoyen.hh"
+#include "PartieIADifficile.hh"
 #include "Parametres.hh"
 #include "Jeu.hh"
 
@@ -172,3 +174,22 @@ TEST_CASE("10: IA moyen"){
 
 }
 
+TEST_CASE("11: IA Difficile"){
+
+	Parametres param;
+	PartieIADifficile p(param);
+	p.setJoueurCourant(1);
+	p.remplitGrille();
+	p.remplitGrille();
+	p.remplitGrille();
+	p.setJoueurCourant(0);
+	p.tourOrdi();
+
+	p.setJoueurCourant(1);
+	p.remplitGrille();
+	p.remplitGrille();
+	p.remplitGrille();
+	p.setJoueurCourant(0);
+	p.tourOrdi();
+
+}
