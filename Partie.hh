@@ -33,6 +33,7 @@ public:
 	virtual void reinitialisePartie()=0;
 	virtual void debutPartie()=0;
 	virtual int finPartie(int issue)=0;
+	int setJoueurCourant(int JoueurCour){return JoueurCourant=JoueurCour;};
 	int& operator()(int L, int C){return grille[L][C];};
 
 protected:

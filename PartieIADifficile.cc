@@ -147,7 +147,7 @@ int PartieIADifficile::VerifieFin(){
 	return -1;
 
 }
-void PartieIADifficile::verifi(int colonne,int sym){
+int PartieIADifficile::verifi(int colonne,int sym){
 	PionsAlignes pions;
 	int i,j;
 	//verifie 3pions alignes horizontalemnt
@@ -159,7 +159,7 @@ void PartieIADifficile::verifi(int colonne,int sym){
 			
 			}
 			if(pions.est3pions(sym)!=-1){
-					colonne=j+1;
+					colonne=j-1;
 			}
 
 			//verifie 3pions alignes verticalement
@@ -174,6 +174,7 @@ void PartieIADifficile::verifi(int colonne,int sym){
 			if(pions.est3pions(sym)!=-1){
 					colonne=j;
 			}
+		return colonne;
 }
 void PartieIADifficile::tourOrdi(){
 	int colonne=rand()%6;
@@ -181,21 +182,20 @@ void PartieIADifficile::tourOrdi(){
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
 			cout<<"jeton de IA est X"<<endl;
-			verifi(colonne,'X');
+			colonne=verifi(colonne,'O');	
 			
 		}
 		else{
 			cout<<"jeton de IA est O"<<endl;
-			verifi(colonne,'O');
+			colonne=verifi(colonne,'X');
 		}
 	}else{
 		if (!JoueurCourant){
 			cout<<"jeton de IA est 1"<<endl;
-			verifi(colonne,'1');
+			colonne=verifi(colonne,'2');
 		}else{
 			cout<<"jeton de IA est 2"<<endl;
-			
-			verifi(colonne,'2');
+			colonne=verifi(colonne,'1');
 			}
 		}
 	

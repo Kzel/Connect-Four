@@ -12,7 +12,7 @@ public:
     void reinitialisePartie();
     void remplitGrille();
     int VerifieFin();
-    void verifi(int colonne,int sym);
+    int verifi(int colonne,int sym);
     void tourOrdi();
     int jeu();
 
