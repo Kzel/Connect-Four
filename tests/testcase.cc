@@ -135,25 +135,25 @@ TEST_CASE("8: egalite:meme nombre d'alignement de 3 pions+critereEgalite=pions")
 TEST_CASE("9: changement des parametres"){
 
 	Parametres param;
-	cout<<param.consulteParam()<<endl;
+	
     switch(param.consulteParam()) {
     case 1 : 
-		param.affsymbole();
+		cout<<param.getAffichageSymboles()<<endl;
         break;    
     case 2 : 
-		param.affindex();
+		cout<<param.getAffichageIndex()<<endl;
         break;
 	case 3 : 
-		param.affcritere();
+		cout<<param.getCritereEgalite()<<endl;
         break;
 	case 4 : 
-		param.affdiff();
+		cout<<param.getNivDifficulte()<<endl;
         break;
 	case 5 :
-		param.affsansegal();
+		cout<<param.getSansEgalite()<<endl;
         break;
 	case 6 : 
-		param.affresume();
+		cout<<param.getAvecResume()<<endl;
         break;
 	}	
 
