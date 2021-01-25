@@ -8,6 +8,18 @@ public:
 	Parametres();
 	int consulteParam();
 	void Changer(int num);
+	void affsymbole();
+	void affindex();
+	void affcritere();
+	void affdiff();
+	void affsansegal();
+	void affresume();
+	void changeaffsym(int x1);
+	void changeaffind(int x2);
+	void changeaffrap(int x3);
+	void changediff(int x4);
+	void changeegal(int x5);
+	void changeresum(int x6);
 	//getters
 	int getAvecResume(){return avecResume;};
 	int getNivDifficulte(){return nivDifficulte;};
@@ -28,6 +40,7 @@ public:
 	{sansEgalite=sansEga;};
 	void setAvecResume(int avecResum)
 	{avecResume=avecResum;};
+	void affsym();
 
 private:
 	int affichageSymboles;

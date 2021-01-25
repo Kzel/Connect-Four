@@ -149,125 +149,58 @@ int PartieIADifficile::VerifieFin(){
 	return -1;
 
 }
+void PartieIADifficile::verifi(int colonne,int sym){
+	PionsAlignes pions;
+	int i,j;
+	//verifie 3pions alignes horizontalemnt
+	for(i=0;i<ligneRemplieMax;i++){
+					
+			for(j=0;j<=6;j++){
+				pions.ajouterPion(grille[i][j]);
+			}
+			
+			}
+			if(pions.est3pions(sym)!=-1){
+					colonne=j+1;
+			}
 
+			//verifie 3pions alignes verticalement
+			for(j=0;j<=6;j++){
+				if(!(nbParColonne[j]<4)){
+					for(i=0;i<nbParColonne[j];i++){
+						pions.ajouterPion(grille[i][j]);
+					}	
+				}
+			}
+
+			if(pions.est3pions(sym)!=-1){
+					colonne=j;
+			}
+}
 void PartieIADifficile::tourOrdi(){
 	int colonne=rand()%6;
-	int i,j;
-	PionsAlignes pions;
+
     if (!(par.getAffichageSymboles())){
 		if (!JoueurCourant){
 			cout<<"jeton de IA est X"<<endl;
-			//verifie 3pions alignes horizontalemnt
-			for(i=0;i<ligneRemplieMax;i++){
-					
-					for(j=0;j<=6;j++){
-				pions.ajouterPion(grille[i][j]);
-			}
+			verifi(colonne,'X');
 			
-			}
-			if(pions.est3pions('X')!=-1){
-					colonne=j+1;
-				}
-			//verifie 3pions alignes verticalement
-			for(j=0;j<=6;j++){
-				if(!(nbParColonne[j]<4)){
-				
-					for(i=0;i<nbParColonne[j];i++){
-				pions.ajouterPion(grille[i][j]);
-			}
-				
-			  }
-			}
-			if(pions.est3pions('X')!=-1){
-					colonne=j;
-				}
 		}
 		else{
 			cout<<"jeton de IA est O"<<endl;
-			//verifie 3pions alignes horizontalemnt
-			for(i=0;i<ligneRemplieMax;i++){
-					
-					for(j=0;j<=6;j++){
-				pions.ajouterPion(grille[i][j]);
-			}
-			}
-			if(pions.est3pions('O')!=-1){
-					colonne=j+1;
-				}
-			}
-			//verifie 3pions alignes verticalement
-			for(j=0;j<=6;j++){
-				if(!(nbParColonne[j]<4)){
-					
-					for(i=0;i<nbParColonne[j];i++){
-				pions.ajouterPion(grille[i][j]);
-			}
-				
-			  }
-			}
-			if(pions.est3pions('O')!=-1){
-					colonne=j;
-				}
-		
-	}
-	else{
+			verifi(colonne,'O');
+		}
+	}else{
 		if (!JoueurCourant){
 			cout<<"jeton de IA est 1"<<endl;
-			//verifie 3pions alignes horizontalemnt
-			for(i=0;i<ligneRemplieMax;i++){
-					
-					for(j=0;j<=6;j++){
-				pions.ajouterPion(grille[i][j]);
-			}
-			
-			}
-			if(pions.est3pions('1')!=-1){
-					colonne=j+1;
-				}
-			//verifie 3pions alignes verticalemnt
-			for(j=0;j<=6;j++){
-				if(!(nbParColonne[j]<4)){
-					
-					for(i=0;i<nbParColonne[j];i++){
-				pions.ajouterPion(grille[i][j]);
-			}
-				
-			  }
-			}
-			if(pions.est3pions('1')!=-1){
-					colonne=j;
-				}
-		}
-		else{
+			verifi(colonne,'1');
+		}else{
 			cout<<"jeton de IA est 2"<<endl;
-			//verifie 3pions alignes horizontalemnt
-			for(i=0;i<ligneRemplieMax;i++){
-					
-					for(j=0;j<=6;j++){
-				pions.ajouterPion(grille[i][j]);
-			}
 			
+			verifi(colonne,'2');
 			}
-			
-			if(pions.est3pions('2')!=-1){
-					colonne=j+1;
-			}
-			//verifie 3pions alignes verticalemnt
-			for(j=0;j<=6;j++){
-				if(!(nbParColonne[j]<4)){
-					
-					for(i=0;i<nbParColonne[j];i++){
-						pions.ajouterPion(grille[i][j]);
-					}
-				}	
-			  }
-
-			  if(pions.est3pions('2')!=-1){
-					colonne=j;
-				}
-			}
-
-	}
+		}
+	
 	
 	while(nbParColonne[colonne]==6){
 		colonne=rand()%6;

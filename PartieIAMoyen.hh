@@ -11,6 +11,7 @@ public:
     void reinitialisePartie();
     void remplitGrille();
     int VerifieFin();
+    void veriligne(int colonne,int sym);
     void tourOrdi();
     int jeu();
 

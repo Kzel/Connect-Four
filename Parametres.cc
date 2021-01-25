@@ -11,16 +11,16 @@ Parametres::Parametres(){
 	avecResume=1;
 
 }
-
-int Parametres::consulteParam(){
-	int numero;
-	cout<<"----------------------------------"<<endl;
-	cout<<"Parametres:"<<endl;
+void Parametres::affsymbole(){
+	
 	if(getAffichageSymboles()){
 		cout<<"1: Affichage les symboles :1/2"<<endl;
 	}else{
 		cout<<"1: Affichage les symboles :O/X"<<endl;
 	}
+}
+
+void Parametres::affindex(){
 
 	if(getAffichageIndex()){
 		cout<<"2: Affichage les indexs :Oui"<<endl;
@@ -28,11 +28,19 @@ int Parametres::consulteParam(){
 		cout<<"2: Affichage les indexs :Non"<<endl;
 	}
 
+}
+
+void Parametres::affcritere(){
+
 	if(getCritereEgalite()){
 		cout<<"3: Critere egalite : pions"<<endl;
 	}else{
 		cout<<"3: Critere egalite : rapidite"<<endl;
 	}
+
+}
+
+void Parametres::affdiff(){
 
 	switch (getNivDifficulte())
 	{
@@ -51,35 +59,48 @@ int Parametres::consulteParam(){
 		break;
 	}
 
+}
+
+void Parametres::affsansegal(){
+
 	if(getSansEgalite()){
 		cout<<"5: Sans egalite :oui"<<endl;
 	}else{
 		cout<<"5: Sans egalite :non"<<endl;
 	}
-		
+
+}
+
+
+void Parametres::affresume(){
+
 	if(getAvecResume()){
 		cout<<"6: Avec resume :Oui"<<endl;
 	}else{
 		cout<<"6: Avec resume :Non"<<endl;
 	}
-	cout<<"7: Menu"<<endl;
-	cout<<"Tapez le numero du parametre que vous voulez changer"<<endl;
-	cin>>numero;
-	if(numero!=7){
-		Changer(numero);
-	}
-	return numero;
 }
 
 
-void Parametres::Changer(int num){
-	int x1,x2,x3,x4,x5,x6;
-	cout<<"Comment vous voulez changer ce parametre?"<<endl;
-	cout<<"Tapez ce que vous voulez"<<endl;
-	switch (num)
-	{
-	case 1:
-		cout<<"0: Affichage des symboles :O/X "<<endl;
+int Parametres::consulteParam(){
+	int numero;
+	cout<<"----------------------------------"<<endl;
+	cout<<"Parametres:"<<endl;
+	affsymbole();
+	affindex();
+	affcritere();
+	affdiff();
+	affsansegal();
+	affresume();
+	cout<<"7: Menu"<<endl;
+	cout<<"Tapez le numero du parametre que vous voulez changer"<<endl;
+	cin>>numero;
+	if(numero!=7){Changer(numero);}
+	return numero;
+}
+
+void Parametres::changeaffsym(int x1){
+	cout<<"0: Affichage des symboles :O/X "<<endl;
 		cout<<"1: Affichage des symboles :1/2 "<<endl;
 		cin>>x1;
 		if(cin){
@@ -87,9 +108,9 @@ void Parametres::Changer(int num){
 		}else{
 			setAffichageSymboles(x1);
 		}
-		break;
+}
 
-	case 2:
+void Parametres::changeaffind(int x2){
 		cout<<"0: Ne pas afficher pas d'index"<<endl;
 		cout<<"1: Afficher les indexs"<<endl;
 		cin>>x2;
@@ -98,10 +119,9 @@ void Parametres::Changer(int num){
 		}else{
 			setAffichageIndex(x2);
 		}
-		break;
+}
 
-	case 3:
-	
+void Parametres::changeaffrap(int x3){
 		cout<<"0: rapidite"<<endl;
 		cout<<"1: 3 pions alignes"<<endl;
 		cin>>x3;
@@ -110,9 +130,9 @@ void Parametres::Changer(int num){
 		}else{
 			setCritereEgalite(x3);
 		}
-		break;
+}
 
-	case 4:
+void Parametres::changediff(int x4){
 		cout<<"1: Le niveau facile"<<endl;
 		cout<<"2: Le niveau moyen"<<endl;
 		cout<<"3: Le niveau difficile"<<endl;
@@ -122,9 +142,9 @@ void Parametres::Changer(int num){
 		}else{
 			setNivDifficulte(x4);
 		}
-		break;
+}
 
-	case 5:
+void Parametres::changeegal(int x5){
 		cout<<"0: Avec Egalite"<<endl;
 		cout<<"1: Sans Egalite"<<endl;
 		cin>>x5;
@@ -133,9 +153,9 @@ void Parametres::Changer(int num){
 		}else{
 			setSansEgalite(x5);
 		}
-		break;
+}
 
-	case 6:
+void Parametres::changeresum(int x6){
 		cout<<"0: Sans resume"<<endl;
 		cout<<"1: Avec resume"<<endl;
 		cin>>x6;
@@ -144,10 +164,40 @@ void Parametres::Changer(int num){
 		}else{
 			setAvecResume(x6);
 		}
+}
+
+
+void Parametres::Changer(int num){
+	int x1=0,x2=0,x3=0,x4=0,x5=0,x6=0;
+	cout<<"Comment vous voulez changer ce parametre?"<<endl;
+	cout<<"Tapez ce que vous voulez"<<endl;
+	switch (num)
+	{
+	case 1:
+		changeaffsym(x1);
+		break;
+
+	case 2:
+		changeaffind(x2);
+		break;
+
+	case 3:
+		changeaffrap(x3);
+		break;
+
+	case 4:
+		changediff(x4);
+		break;
+
+	case 5:
+		changeegal(x5);
+		break;
+
+	case 6:
+		changeresum(x6);
 		break;
 
 	default:
 		break;
 	}
-
 }

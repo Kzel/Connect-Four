@@ -96,8 +96,7 @@ void PartieIAFacile::remplitGrille(){
 		else{
 			cout<<"O"<<endl;
 		}
-	}
-	else{
+	}else{
 		if (!JoueurCourant){
 			cout<<"1"<<endl;
 		}
@@ -111,14 +110,12 @@ void PartieIAFacile::remplitGrille(){
 	cout<<endl;
 	
 	//tant que la colonne choisie est remplie, on redemande au joueur de jouer
-	while(nbParColonne[colonne]==6){
-			
+	while(nbParColonne[colonne]==6){		
 		majAffichage();
 		cout<<"choisis une colonne non remplie"<<endl;
 		cin>>colonne;
 	} 
 	
-
 	grille[nbParColonne[colonne]][colonne]=JoueurCourant;
 	nbParColonne[colonne]++; //maj ligneRemplieMax
 
