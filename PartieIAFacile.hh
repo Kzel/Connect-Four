@@ -9,10 +9,10 @@ public:
     int finPartie(int issue);
     void reinitialisePartie();
     void remplitGrille();
-    int VerifieFin();
+    int  VerifieFin();
     void tourOrdi();
     int jeu();
 
 protected:
-   string tabJoueurs[2];
+   string nomjoueur;
 };

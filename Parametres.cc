@@ -93,7 +93,7 @@ int Parametres::consulteParam(){
 	affsansegal();
 	affresume();
 	cout<<"7: Menu"<<endl;
-	cout<<"Tapez le numero du parametre que vous voulez changer"<<endl;
+	cout<<"Taper le numero du parametre que tu veux changer"<<endl;
 	cin>>numero;
 	if(numero!=7){Changer(numero);}
 	return numero;
@@ -175,8 +175,8 @@ void Parametres::changeresum(){
 
 void Parametres::Changer(int num){
 	
-	cout<<"Comment vous voulez changer ce parametre?"<<endl;
-	cout<<"Tapez ce que vous voulez"<<endl;
+	cout<<"Comment tu veux changer ce parametre?"<<endl;
+	cout<<"Tapez ce que tu veux"<<endl;
 	switch (num)
 	{
 	case 1:

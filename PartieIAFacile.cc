@@ -6,17 +6,15 @@ PartieIAFacile::PartieIAFacile(Parametres param):Partie(param){
 }
 void PartieIAFacile::debutPartie(){
  	if (demandeNom){
- 		cout	<< "Quel est le nom du premier joueur ?" << endl;
-		cin>>tabJoueurs[0];
-		cout<<std::endl<<std::endl <<"Quel est le nom d'IA ?" <<endl;
-		cin>>tabJoueurs[1];  
+ 		cout<< "Quel est le nom du joueur ?" << endl;
+		cin>>nomjoueur;  
  	}
  	if(!JoueurCourant==0){
  		cout<<endl;
- 		cout<<"C'est " << tabJoueurs[0] << " qui commence"<<endl;
+ 		cout<<"C'est" <<nomjoueur << "qui commence"<<endl;
  	}
  	else{
- 		cout<<"C'est " << tabJoueurs[1] << " qui commence"<<endl;
+ 		cout<<"C'est IA qui commence"<<endl;
  	}
  }
  
