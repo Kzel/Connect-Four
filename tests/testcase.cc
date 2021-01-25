@@ -138,21 +138,27 @@ TEST_CASE("9: changement des parametres"){
 	
     switch(param.consulteParam()) {
     case 1 : 
+		cout<<"valeur du paramètre 1 : affichage symboles"<<endl; 
 		cout<<param.getAffichageSymboles()<<endl;
         break;    
-    case 2 : 
+    case 2 :
+		cout<<"valeur du paramètre 2 : affichage index"<<endl;
 		cout<<param.getAffichageIndex()<<endl;
         break;
-	case 3 : 
+	case 3 :
+		cout<<"valeur du paramètre 3: critere d'egalite"<<endl; 
 		cout<<param.getCritereEgalite()<<endl;
         break;
 	case 4 : 
+		cout<<"valeur du paramètre 4: niveau de difficulte"<<endl; 
 		cout<<param.getNivDifficulte()<<endl;
         break;
 	case 5 :
+		cout<<"valeur du paramètre 5: sans egalite"<<endl; 
 		cout<<param.getSansEgalite()<<endl;
         break;
 	case 6 : 
+		cout<<"valeur du paramètre 4: Avec resume"<<endl; 
 		cout<<param.getAvecResume()<<endl;
         break;
 	}	
